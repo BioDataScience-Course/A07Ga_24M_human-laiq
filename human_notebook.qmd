@@ -47,24 +47,37 @@ biometry <- read("data/biometry.rds")
 
 <!--% Ensuite vous décrirez graphiquement (avec `chart()`) et numériquement (tableaux avec `tabularise()`, `skimr::skim()`, etc.) vos données. Chaque étudiant ajoute deux éléments descriptifs pertinents. -->
 
-### Description par l'étudiant 1
+### Description par Lila
 
 ```{r}
 chart(data=biometry, masse~sommeil %col=% sucre) +
   geom_point()
 ```
 
-### Description par l'étudiant 2
+### Description par Arthur
 
 ...Vos deux descriptions ici...
 
-### Description par l'étudiant 3
+### Description par Irma
 
-...Vos deux descriptions ici...
+```{r}
+biometry$masse_rec <- cut(biometry$masse, include.lowest = FALSE, right = TRUE, breaks = c(40,60,80,100))
+chart(data = biometry, ~ masse_rec %fill=% alimentation)+
+  geom_bar()+
+  xlab("Masse divisée en groupe")+
+  ylab("Dénombrement")
+```
 
-### Description par l'étudiant 4
+```{r}
+tableau3 <-
+tabularise(tableau3)
+```
 
-...Vos deux descriptions ici...
+### Description par Quentin
+
+```{r}
+chart(biometry, ~ activite_physique | genre) + geom_histogram(bins = 15)
+```
 
 ## Calcul d'indices
 
