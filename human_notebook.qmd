@@ -57,12 +57,9 @@ biometry <- read("data/biometry.rds")
 
 
 ```{r graph2}
-chart(data=biometry,masse ~taille %col=% genre )+
+chart(data=biometry,masse ~taille %col=% genre  )+
   geom_point()
 ```
-
-
-### Description par Irma
 
 
 ```{r graph3}
