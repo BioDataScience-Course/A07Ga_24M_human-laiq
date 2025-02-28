@@ -53,30 +53,11 @@ biometry <- read("data/biometry.rds")
 
 ### Description par Arthur
 
-
 ```{r graph2}
 chart(data=biometry,masse ~taille %col=% genre  )+
   geom_point()
 ```
 
-
-```{r tab2}
-
-
-
-
-
-```
-
-
-
-
-### Description par Quentin
-
-
-...Vos deux descriptions ici...
-
-### Description par Irma
 
 ```{r graph3}
 biometry$masse_rec <- cut(biometry$masse, include.lowest = FALSE, right = TRUE, breaks = c(40,60,80,100))
@@ -95,7 +76,6 @@ ssummarise(., "moyenne" = fmean(masse))->
     tableau3
 tabularise(tableau3)
 ```
-
 
 ### Description par Quentin
 
