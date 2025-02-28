@@ -73,7 +73,14 @@ tabularise(tableau3)
 ### Description par Quentin
 
 ```{r}
-chart(biometry, ~ activite_physique | genre) + geom_histogram(bins = 15)
+chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs( y = "Effectifs")
+
+```
+
+```{r}
+tableau4 <- 
+  tabularise$headtail(biometry)
+  skimr::skim(biometry)
 ```
 
 ## Calcul d'indices
