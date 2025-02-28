@@ -53,18 +53,40 @@ biometry <- read("data/biometry.rds")
 
 ### Description par Arthur
 
+
 ```{r}
 chart(data=biometry,masse ~taille %col=% genre )+
   geom_point()
 ```
 
-### Description par Irma
+
+
+### Description par Quentin
+======
 
 ...Vos deux descriptions ici...
+
+### Description par Irma
+
+```{r}
+biometry$masse_rec <- cut(biometry$masse, include.lowest = FALSE, right = TRUE, breaks = c(40,60,80,100))
+chart(data = biometry, ~ masse_rec %fill=% alimentation)+
+  geom_bar()+
+  xlab("Masse divisée en groupe")+
+  ylab("Dénombrement")
+```
+
+```{r}
+tableau3 <-
+tabularise(tableau3)
+```
+
 
 ### Description par Quentin
 
-...Vos deux descriptions ici...
+```{r}
+chart(biometry, ~ activite_physique | genre) + geom_histogram(bins = 15)
+```
 
 ## Calcul d'indices
 
