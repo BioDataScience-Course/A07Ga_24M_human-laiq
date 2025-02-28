@@ -152,23 +152,32 @@ tableau4 <-
 ```{r indice3}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 biometry %>.%
-  smutate(., poids_Perrault = taille - 100 + age/10 *0.9)
+  smutate(., masse_perrault = taille - 100 + age/10 *0.9) ->
+  biometry
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice3}
 # Graphique ou tableau utilisant l'indice calculé.
-
+biometry %>.%
+sfilter(., masse_perrault > masse_corr)-> masse_perrault_sub
+a <- chart(data = masse_perrault_sub, ~ alcool %fill=% alimentation)+
+  geom_bar()+
+  labs(caption = "Masse inférieure à la masse idéale calculée selon Perrault", y = "Dénombrement")
+biometry %>.%
+  sfilter(., masse_perrault < masse_corr) -> masse_perrault_inf
+b <- chart(data = masse_perrault_inf, ~ alcool %fill=% alimentation)+
+  geom_bar()+
+  labs(caption = "Masse supérieure à la masse idéale calculée selon Perrault", y = "Dénombrement")
+combine_charts(list(a, b), common.legend = TRUE)
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Ceux qui ont une masse inférieure à celle jugée idéale par le test de Perrault sont plus nombreux à ne pas boire d'alcool que ceux ayant une masse supérieure à celle calculée par le test de Perrault.
 
--   ...
-
--   ...
+-   Tous ceux ayant un mode de vie carnivore ont une masse inférieur à celle calculée par le test de Perrault. Il est cependant hasardeux d'en tirer des conclusions trop forte. Ceux ayant une alimentation carnivore sont peu nombreux.
 
 ### Indice 4
 
