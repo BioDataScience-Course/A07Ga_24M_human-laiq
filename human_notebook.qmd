@@ -54,10 +54,14 @@ biometry <- read("data/biometry.rds")
 ### Description par Arthur
 
 
-```{r}
+```{r graph2}
 chart(data=biometry,masse ~taille %col=% genre )+
   geom_point()
 ```
+
+
+```{r}
+``tabularise
 
 
 
