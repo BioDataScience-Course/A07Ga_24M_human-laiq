@@ -57,8 +57,11 @@ biometry <- read("data/biometry.rds")
 chart(data=biometry,masse ~taille %col=% genre  )+
   geom_point()
 ```
+```{r tab2}
 
+```
 
+### Description par IRMA
 ```{r graph3}
 biometry$masse_rec <- cut(biometry$masse, include.lowest = FALSE, right = TRUE, breaks = c(40,60,80,100))
 chart(data = biometry, ~ masse_rec %fill=% alimentation)+
