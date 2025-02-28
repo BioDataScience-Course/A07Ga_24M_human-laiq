@@ -49,7 +49,10 @@ biometry <- read("data/biometry.rds")
 
 ### Description par l'étudiant 1
 
-...Vos deux descriptions ici...
+```{r}
+chart(data=biometry, masse~sommeil %col=% sucre) +
+  geom_point()
+```
 
 ### Description par l'étudiant 2
 
