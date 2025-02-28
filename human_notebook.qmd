@@ -47,19 +47,22 @@ biometry <- read("data/biometry.rds")
 
 <!--% Ensuite vous décrirez graphiquement (avec `chart()`) et numériquement (tableaux avec `tabularise()`, `skimr::skim()`, etc.) vos données. Chaque étudiant ajoute deux éléments descriptifs pertinents. -->
 
-### Description par l'étudiant 1
+### Description par Lila
 
 ...Vos deux descriptions ici...
 
-### Description par l'étudiant 2
+### Description par Arthur
+
+```{r}
+chart(data=biometry,masse ~taille %col=% genre )+
+  geom_point()
+```
+
+### Description par Irma
 
 ...Vos deux descriptions ici...
 
-### Description par l'étudiant 3
-
-...Vos deux descriptions ici...
-
-### Description par l'étudiant 4
+### Description par Quentin
 
 ...Vos deux descriptions ici...
 
