@@ -49,7 +49,18 @@ biometry <- read("data/biometry.rds")
 
 ### Description par Lila
 
-...Vos deux descriptions ici...
+```{r}
+biometry$sommeil_rec <- cut(biometry$sommeil, include.lowest = FALSE, right = TRUE, breaks = c(4,6,8,10))
+chart(data=biometry, ~sommeil_rec %fill=% sucre) +
+  geom_bar()+
+  ylab("Effectifs")+
+  xlab("Heures de sommeil par jour")
+```
+
+```{r}
+biometry25 <- sfilter(biometry, age >= 25)
+tabularise(biometry25)
+```
 
 ### Description par Arthur
 
