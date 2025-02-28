@@ -53,6 +53,21 @@ biometry <- read("data/biometry.rds")
 
 ### Description par Arthur
 
+
+```{r graph2}
+chart(data=biometry,masse ~taille %col=% genre )+
+  geom_point()
+```
+
+
+```{r tab2}
+``
+
+
+
+### Description par Quentin
+
+
 ...Vos deux descriptions ici...
 
 ### Description par Irma
@@ -75,9 +90,12 @@ ssummarise(., "moyenne" = fmean(masse))->
 tabularise(tableau3)
 ```
 
+
 ### Description par Quentin
 
-...Vos deux descriptions ici...
+```{r}
+chart(biometry, ~ activite_physique | genre) + geom_histogram(bins = 15)
+```
 
 ## Calcul d'indices
 
