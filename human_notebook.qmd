@@ -53,12 +53,10 @@ biometry <- read("data/biometry.rds")
 
 ### Description par Arthur
 
-
 ```{r graph2}
 chart(data=biometry,masse ~taille %col=% genre )+
   geom_point()
 ```
-
 
 ```{r tab2}
 ``
@@ -72,7 +70,6 @@ chart(data=biometry,masse ~taille %col=% genre )+
 
 ### Description par Irma
 
-```{r graph3}
 biometry$masse_rec <- cut(biometry$masse, include.lowest = FALSE, right = TRUE, breaks = c(40,60,80,100))
 chart(data = biometry, ~ masse_rec %fill=% alimentation)+
   geom_bar()+
@@ -90,11 +87,10 @@ ssummarise(., "moyenne" = fmean(masse))->
 tabularise(tableau3)
 ```
 
-
 ### Description par Quentin
 
 ```{r}
-chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs( y = "Effectifs")
+chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs(y = "Effectifs")
 
 ```
 
