@@ -1,6 +1,6 @@
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
-author: "___, ___, ___, ___"
+author: "Lila Franchin, Arthur Miroux, Irma Gaziaux,Quentin Dewulf "
 date: "`r Sys.Date()`"
 format:
   html:
