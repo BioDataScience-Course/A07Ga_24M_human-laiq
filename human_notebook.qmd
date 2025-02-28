@@ -61,7 +61,9 @@ biometry <- read("data/biometry.rds")
 
 ### Description par Quentin
 
-...Vos deux descriptions ici...
+```{r}
+chart(biometry, ~ activite_physique | genre) + geom_histogram(bins = 15)
+```
 
 ## Calcul d'indices
 
