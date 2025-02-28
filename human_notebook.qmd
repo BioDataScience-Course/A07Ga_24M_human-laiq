@@ -57,7 +57,18 @@ biometry <- read("data/biometry.rds")
 
 ### Description par Irma
 
-...Vos deux descriptions ici...
+```{r}
+biometry$masse_rec <- cut(biometry$masse, include.lowest = FALSE, right = TRUE, breaks = c(40,60,80,100))
+chart(data = biometry, ~ masse_rec %fill=% alimentation)+
+  geom_bar()+
+  xlab("Masse divisée en groupe")+
+  ylab("Dénombrement")
+```
+
+```{r}
+tableau3 <-
+tabularise(tableau3)
+```
 
 ### Description par Quentin
 
