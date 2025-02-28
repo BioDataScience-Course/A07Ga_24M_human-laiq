@@ -60,13 +60,13 @@ chart(data=biometry,masse ~taille %col=% genre )+
 ```
 
 
-```{r}
-``tabularise
+```{r tab2}
+``
 
 
 
 ### Description par Quentin
-======
+
 
 ...Vos deux descriptions ici...
 
