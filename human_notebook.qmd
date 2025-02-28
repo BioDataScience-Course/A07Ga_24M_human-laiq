@@ -78,7 +78,7 @@ chart(data=biometry,masse ~taille %col=% genre  )+
 
 ### Description par Irma
 
-```{r}
+```{r graph3}
 biometry$masse_rec <- cut(biometry$masse, include.lowest = FALSE, right = TRUE, breaks = c(40,60,80,100))
 chart(data = biometry, ~ masse_rec %fill=% alimentation)+
   geom_bar()+
@@ -86,8 +86,13 @@ chart(data = biometry, ~ masse_rec %fill=% alimentation)+
   ylab("Dénombrement")
 ```
 
-```{r}
-tableau3 <-
+```{r tableau3}
+biometry %>.%
+  sfilter(., fast_food > 3, sucre == "souvent") %>.%
+  sselect(., fast_food, masse, sucre) %>.%
+  sgroup_by(., fast_food, sucre) %>.%
+ssummarise(., "moyenne" = fmean(masse))->
+    tableau3
 tabularise(tableau3)
 ```
 
@@ -95,7 +100,14 @@ tabularise(tableau3)
 ### Description par Quentin
 
 ```{r}
-chart(biometry, ~ activite_physique | genre) + geom_histogram(bins = 15)
+chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs( y = "Effectifs")
+
+```
+
+```{r}
+tableau4 <- 
+  tabularise$headtail(biometry)
+  skimr::skim(biometry)
 ```
 
 ## Calcul d'indices
