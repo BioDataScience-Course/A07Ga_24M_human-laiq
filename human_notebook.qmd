@@ -91,12 +91,12 @@ tabularise(tableau3)
 
 ### Description par Quentin
 
-```{r}
+```{r graph4}
 chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs(y = "Effectifs")
 
 ```
 
-```{r}
+```{r tableau4}
 tableau4 <- 
   tabularise$headtail(biometry)
   skimr::skim(biometry)
