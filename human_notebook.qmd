@@ -95,7 +95,7 @@ tabularise(tableau3)
 # Test graphique 1 - Répartition de l'activité physique par genre
 chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs(title = "Répartition de l'activité physique par genre", y = "Effectifs")
 # Test graphique 2 - Distribution de l'activité physique selon le genre
-chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_density( data = biometry, aes(y = ..count..), adjust = 0.7) + labs(title = "Distribution de l'activité physique selon le genre", y = "Densité")
+chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_density( data = biometry, aes(y = after_stat(count)), adjust = 0.7) + labs(title = "Distribution de l'activité physique selon le genre", y = "Densité")
 # Test graphique 3 - Répartition des âges
 chart(biometry, ~ age) +  
   geom_histogram(bins = 80) + 
