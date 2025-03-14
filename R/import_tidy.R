@@ -93,7 +93,9 @@ biometry %>.%
      sucre = "Consommation de sucre",
      fumeur = "Fumeur",
      cortisone = "Cortisone",
-     eau = "Consommation d'eau"),
+     eau = "Consommation d'eau",
+     age = "Âge",
+     masse_corr = "Masse corrigée"),
    units = list(
      masse_std_ref = "kg",
      masse_std = "kg",
@@ -107,7 +109,10 @@ biometry %>.%
      sommeil = "h/j",
      fast_food = "nbr/mois",
      fumeur = "nbr cigarettes/sem",
-     eau = "L/j")
+     eau = "L/j",
+     age = "années",
+     masse_corr = "kg"
+     )
  )
 
 

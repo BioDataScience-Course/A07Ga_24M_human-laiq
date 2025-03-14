@@ -53,7 +53,18 @@ biometry <- read("data/biometry.rds")
 
 ### Description par Lila
 
-...Vos deux descriptions ici...
+```{r}
+biometry$sommeil_rec <- cut(biometry$sommeil, include.lowest = FALSE, right = TRUE, breaks = c(4,6,8,10))
+chart(data=biometry, ~sommeil_rec %fill=% sucre) +
+  geom_bar()+
+  ylab("Effectifs")+
+  xlab("Heures de sommeil par jour")
+```
+
+```{r}
+biometry25 <- sfilter(biometry, age >= 25)
+tabularise(biometry25)
+```
 
 ### Description par Arthur
 
@@ -70,14 +81,11 @@ sselect (.,masse, alcool, fumeur) %>.%
 sgroup_by (., masse , alcool, fumeur)%>.%
 ssummarise(.,"moyenne" = fmean(masse)) -> tab2
 tabularise(tab2)
-
 ```
 
-```{r tab3}
-
-
-
 ### Description par Irma
+
+```{r graph3}
 biometry$masse_rec <- cut(biometry$masse, include.lowest = FALSE, right = TRUE, breaks = c(40,60,80,100))
 chart(data = biometry, ~ masse_rec %fill=% alimentation)+
   geom_bar()+
@@ -88,24 +96,47 @@ chart(data = biometry, ~ masse_rec %fill=% alimentation)+
 ```{r tableau3}
 biometry %>.%
   sfilter(., fast_food > 3, sucre == "souvent") %>.%
-  sselect(., fast_food, masse, sucre) %>.%
+  sselect(., fast_food, masse_corr, sucre) %>.%
   sgroup_by(., fast_food, sucre) %>.%
-ssummarise(., "moyenne" = fmean(masse))->
+ssummarise(., "moyenne" = fmean(masse_corr))->
     tableau3
 tabularise(tableau3)
 ```
 
 ### Description par Quentin
 
-```{r}
-chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs(y = "Effectifs")
-
+```{r graph4}
+# Test graphique 1 - Répartition de l'activité physique par genre
+chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs(title = "Répartition de l'activité physique par genre", y = "Effectifs")
+# Test graphique 2 - Distribution de l'activité physique selon le genre
+chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_density( data = biometry, aes(y = after_stat(count)), adjust = 0.7) + labs(title = "Distribution de l'activité physique selon le genre", y = "Densité")
+# Test graphique 3 - Répartition des âges
+chart(biometry, ~ age) +  
+  geom_histogram(bins = 80) + 
+  labs(title = "Répartition des âges", y = "Effectifs")
+# Note : F : 79 H : 65
 ```
 
-```{r}
-tableau4 <- 
-  tabularise$headtail(biometry)
-  skimr::skim(biometry)
+```{r tableau4}
+biometry %>.%
+  sselect(., genre, masse_corr, taille, activite_physique, tour_poignet, tour_taille, tour_hanche, sommeil, fast_food, fumeur, eau, alcool) %>.%
+  sgroup_by(., genre) %>.%
+  ssummarise(., 
+    "masse_moyenne" = fmean(masse_corr), 
+    "taille_moyenne" = fmean(taille),
+    "tour_poignet_moyenne" = fmean(tour_poignet),
+    "tour_taille_moyenne" = fmean(tour_taille),
+    "tour_hanche_moyenne" = fmean(tour_hanche),
+    "sommeil_moyenne" = fmean(sommeil),
+    "activite_physique_moyenne" = fmean(activite_physique),
+    "eau_moyenne" = fmean(eau),
+    "fast_food_moyenne" = fmean(fast_food),
+    "alcool_moyenne" = fmean(alcool), #interessant
+    "fumeur_moyenne" = fmean(fumeur) #interessant
+    ) -> tableau4
+
+tabularise(tableau4)
+# J'ai mis beaucoup de trucs pour mettre en évidence mais on peut choisir ce qui est interessant à garder
 ```
 
 ## Calcul d'indices
@@ -168,23 +199,33 @@ tableau4 <-
 
 ```{r indice3}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-
+biometry %>.%
+  smutate(., masse_perrault = taille - 100 + age/10 *0.9) ->
+  biometry
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice3}
 # Graphique ou tableau utilisant l'indice calculé.
-
+biometry %>.%
+sfilter(., masse_perrault > masse_corr)-> masse_perrault_sub
+a <- chart(data = masse_perrault_sub, ~ alcool %fill=% alimentation)+
+  geom_bar()+
+  labs(caption = "Masse inférieure à la masse idéale calculée selon Perrault", y = "Dénombrement")
+biometry %>.%
+  sfilter(., masse_perrault < masse_corr) -> masse_perrault_inf
+b <- chart(data = masse_perrault_inf, ~ alcool %fill=% alimentation)+
+  geom_bar()+
+  labs(caption = "Masse supérieure à la masse idéale calculée selon Perrault", y = "Dénombrement")
+combine_charts(list(a, b), common.legend = TRUE)
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Ceux qui ont une masse inférieure à celle jugée idéale par le test de Perrault sont plus nombreux à ne pas boire d'alcool que ceux ayant une masse supérieure à celle calculée par le test de Perrault.
 
--   ...
-
--   ...
+-   Tous ceux ayant un mode de vie carnivore ont une masse inférieur à celle calculée par le test de Perrault. Il est cependant hasardeux d'en tirer des conclusions trop forte. Ceux ayant une alimentation carnivore sont peu nombreux.
 
 ### Indice 4
 
@@ -221,15 +262,27 @@ tableau4 <-
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_1}
-
+## Recodage de biometry$age en biometry$age_rec
+biometry$age_rec <- cut(biometry$age,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(18, 40, 85)
+)
+bio_tab <- table(biometry$age_rec, biometry$masse_rec)
+tabularise(bio_tab)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 : indépendance des deux variables.
+
+H1 : dépendance des deux variables.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_1}
-
+chisq.test(bio_tab)
 ```
 
 <!--% Interprétation statistique et biologique -->
