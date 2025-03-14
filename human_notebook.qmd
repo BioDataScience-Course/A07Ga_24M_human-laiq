@@ -204,11 +204,11 @@ labs(y= "Rapport tour de taille /taille")
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   Les personnes consommant souvent du sucre ont un rapport tour de taille / taille plus bas que celles qui consomment rarement de sucre.
+-   Les personnes consommant souvent du sucre ont un rapport tour de taille / taille plus bas que celles qui consomment rarement de sucre. 
 
--   La majorité des individus ont un rapport tour de taille/taille superieur à 0.5.
+-  La majorité des individus ont un rapport tour de taille/taille superieur à 0.5.
 
--   Nous remarquons la présence de valeurs extrêmes dans la catégorie "souvent"
+- Nous remarquons la présence de valeurs extrêmes dans la catégorie "souvent"
 
 ### Indice 3
 
@@ -313,17 +313,12 @@ chisq.test(bio_tab)
 
 <!--% Interprétation statistique et biologique -->
 
-La valeur *p* de 4.117e-05 est inférieure au seuil α choisi de 0,05. Donc, nous rejetons H0. Il y a dépendance entre les deux variables.
-
-On peut dire qu'il y a une augmentation significative de l'IMC en fonction de l'âge.
-
-Ceci confirme les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : " l'IMC moyen augmente, par ailleurs, en fonction de l'âge".
-
 ### Test de Chi^2^ 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
+
 
 ```
 
@@ -366,7 +361,9 @@ La valeur *p* de 0.37 est supérieur au seuil α choisi de 0,05. Donc, nous ne r
 
 On ne peut pas dire que, pour notre échantillon, les hommes ont significativement un IMC plus élevé que les femmes.
 
-Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : "Les hommes possèdent un IMC moyen supérieur aux femmes".
+Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE
+ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : "Les hommes possèdent un IMC
+moyen supérieur aux femmes".
 
 ### Test t de Student 2
 
