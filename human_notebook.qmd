@@ -1,7 +1,3 @@
-```{r}
-
-```
-
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
 author: "Lila Franchin, Arthur Miroux, Irma Gaziaux, Quentin Dewulf "
@@ -183,23 +179,36 @@ chart(data = biometry, poids_idéal_MonnerotDumaine ~ masse_corr %shape=% genre 
 ```{r indice2}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 biometry %>.%
-  smutate(.,  rapport_tour_taille_taille = tour_taille/taille )
+  smutate(.,  rapport_tour_taille_taille = tour_taille/taille ) -> biometry
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice2}
 # Graphique ou tableau utilisant l'indice calculé.
+give_n <- function(x) {
+  c(y = max(x) * 1.1, label = length(x))
+}
 
+## Recodage de biometry$sucre en biometry$sucre_rec
+biometry$sucre_rec <- biometry$sucre %>%
+  fct_recode(
+    "rarement" = "jamais"
+  ) 
+    
+chart(data = biometry,rapport_tour_taille_taille  ~ sucre_rec) + 
+  geom_boxplot(na.rm= TRUE)+
+  stat_summary(fun.data = give_n, geom = "text", hjust = 0.5) +
+labs(y= "Rapport tour de taille /taille")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Les personnes consommant souvent du sucre ont un rapport tour de taille / taille plus bas que celles qui consomment rarement de sucre. 
 
--   ...
+-  La majorité des individus ont un rapport tour de taille/taille superieur à 0.5.
 
--   ...
+- Nous remarquons la présence de valeurs extrêmes dans la catégorie "souvent"
 
 ### Indice 3
 
@@ -250,7 +259,9 @@ biometry %>.%
 
 ```{r plot_indice4}
 # Graphique ou tableau utilisant l'indice calculé.
-
+  chart(biometry, ~ imc) + 
+    geom_histogram(bins = 20) +
+    labs(title ="Répartition de l'Indice de masse corporelle de notre échantillon",x = "IMC",y = "Effectifs")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
@@ -279,7 +290,12 @@ biometry$age_rec <- cut(biometry$age,
   dig.lab = 4,
   breaks = c(18, 40, 85)
 )
-bio_tab <- table(biometry$age_rec, biometry$bmi)
+biometry$imc_rec <- cut(biometry$imc,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(16.5, 18.5, 25.00, 30.00, 40.00))
+bio_tab <- table(biometry$age_rec, biometry$imc_rec)
 tabularise(bio_tab)
 ```
 
@@ -328,17 +344,25 @@ chart(data = biometry, bmi ~ genre)+
 
 <!-- Hypothèse nulle et alternative -->
 
-H0 : moyenne(bmiF) - moyenne(bmiH) = 0
+H0 : moyenne(imcH) - moyenne(imcF) = 0
 
-H1 : moyenne(bmiF) - moyenne(bmiH) != 0
+H1 : moyenne(imcH) - moyenne(imcF) \> 0
 
 <!-- Vérification des conditions d'application -->
 
 ```{r test_t_1}
-t.test(data = biometry, bmi ~ genre, alternative = "two.sided", conf.level =0.95, var.equal = FALSE)
+t.test(data = biometry, imc ~ genre, alternative = "greater", conf.level =0.95, var.equal = TRUE)
 ```
 
 <!-- Interprétation statistique et biologique -->
+
+La valeur *p* de 0.37 est supérieur au seuil α choisi de 0,05. Donc, nous ne rejetons pas H0.
+
+On ne peut pas dire que, pour notre échantillon, les hommes ont significativement un IMC plus élevé que les femmes.
+
+Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE
+ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : "Les hommes possèdent un IMC
+moyen supérieur aux femmes".
 
 ### Test t de Student 2
 
