@@ -243,7 +243,9 @@ biometry %>.%
 
 ```{r plot_indice4}
 # Graphique ou tableau utilisant l'indice calculé.
-
+  chart(biometry, ~ imc) + 
+    geom_histogram(bins = 20) +
+    labs(title ="Répartition de l'Indice de masse corporelle de notre échantillon",x = "IMC",y = "Effectifs")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
