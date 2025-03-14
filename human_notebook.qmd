@@ -114,23 +114,31 @@ tableau4 <-
 
 ```{r indice1}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-
+smutate(biometry,
+  taille1 =  taille + tour_poignet * 4 - 100,
+  poids_idéal_MonnerotDumaine= taille1 / 2) -> biometry
+sselect(biometry, id, genre, masse_corr, age, taille, poids_idéal_MonnerotDumaine)
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice1}
-# Graphique ou tableau utilisant l'indice calculé.
-
+chart(data = biometry, poids_idéal_MonnerotDumaine ~ masse_corr %shape=% genre %col=% age) +
+  geom_point(na.rm=TRUE)+
+  ylab("Masse idéale Monnerot-Dumaine en kilogrammes")+
+  xlab("Masse en kilogrammes")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   On remarque que la population a une tendance générale : sa masse réelle est plus élevée que la masse "idéale" calculée par la formule de Monnerot-Dumaine. La masse idéale de notre population est située entre 50 et 90 kilos alors que les masses réelles varient de 40 à 14O kilos.
 
--   ...
+```{=html}
+<!-- -->
+```
+-   Les individus agés de 20 à 30 ans ont plus tendance à avoir une masse réelle proche de la masse idéale calculée par la formule de Monerot-Dumaine.
 
--   ...
+-   D'après cette formule, les hommes ont une plus grande tendance de peser un poids idéal que les femmes qui sont généralement en-dessous de ce poids dit idéal.
 
 ### Indice 2
 
