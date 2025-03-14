@@ -331,9 +331,9 @@ chart(data = biometry, bmi ~ genre)+
 
 <!-- Hypothèse nulle et alternative -->
 
-H0 : moyenne(bmiH) - moyenne(bmiF) = 0
+H0 : moyenne(imcH) - moyenne(imcF) = 0
 
-H1 : moyenne(bmiH) - moyenne(bmiF) \> 0
+H1 : moyenne(imcH) - moyenne(imcF) \> 0
 
 <!-- Vérification des conditions d'application -->
 
