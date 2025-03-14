@@ -232,7 +232,7 @@ biometry$age_rec <- cut(biometry$age,
   dig.lab = 4,
   breaks = c(18, 40, 85)
 )
-bio_tab <- table(biometry$age_rec, biometry$masse_rec)
+bio_tab <- table(biometry$age_rec, biometry$bmi)
 tabularise(bio_tab)
 ```
 
@@ -275,15 +275,20 @@ chisq.test(bio_tab)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_1}
-
+chart(data = biometry, bmi ~ genre)+
+  geom_boxplot()
 ```
 
 <!-- Hypothèse nulle et alternative -->
 
+H0 : moyenne(bmiF) - moyenne(bmiH) = 0
+
+H1 : moyenne(bmiF) - moyenne(bmiH) != 0
+
 <!-- Vérification des conditions d'application -->
 
 ```{r test_t_1}
-
+t.test(data = biometry, bmi ~ genre, alternative = "two.sided", conf.level =0.95, var.equal = FALSE)
 ```
 
 <!-- Interprétation statistique et biologique -->
