@@ -31,21 +31,25 @@ SciViews::R("infer", lang = "fr")
 
 <!--# Ce projet porte sur la santé humaine liée à l'obésité, à la façon de se nourrir et aux activités réalisées (plus ou moins sédentaire ou actif) ... Réalisez des recherches bibliographiques afin d'avoir une vision précise de la thématique. Existe-t-il des indicateurs calculables pour quantifier l'état de santé d'un individu, par exemple ? Naturellement, ces indicateurs doivent être calculables sur bases des variables mesurées dans votre jeu de données. Focalisez-vous donc sur ces variables-là. -->
 
-Selon @lebacq2015
+Selon @lebacq2015 a effectué différentes études sur l'obésité en Belgique en 2014. Des valeurs de l'OMS et de de l'IOTF indique que 45% de la population belge entre 3 ans et 64 ans a un IMC trop élevé, 29% est en sur poids et 16% sont obèses. Les hommes auraient tendance à avoir un IMC plus élevé que les femmes. L'âge, de plus, aurait un impact sur l'obésité. A partir de 35 ans, un belge sur trois serait en sur poids.
 
-Le but de notre travail est de mieux comprendre l'obésité. Par rapport à nos mesures, nous avons réalisés des indices et différents tests. Par ces calculs, nous avons essayé de comprendre ce qui pouvait augmenter les risques d'obésité.
+Pour diversifier notre travail, nous allons nous effectuer différents indices en plus de l'IMC. Nous allons effectuer le rapport tour de taille/taille qui lui aussi augmente avec l'âge. De plus, nous effectuerons la formule de Perrault et de Monnerot Dumaine.
+
+Le but de notre travail est de mieux comprendre l'obésité. Nous allons pouvoir déterminer si pour notre échantillon, il y a une augmentation de l'obésité avec l'âge et le sexe. Par rapport à nos mesures, nous avons réalisés des indices et différents tests. Par ces calculs, nous avons essayé de comprendre ce qui pouvait augmenter les risques d'obésité.
 
 # But
 
 <!--% Formulez ici de façon concise et précise votre question de recherche en 1 à 2 phrases. -->
 
-...Votre but ici...
+L'impact de différents facteurs tels que l'âge ou le genre sur le risque de surpoids et l'obésité.
 
 # Matériel et méthodes
 
 <!--% Cette section doit comprendre une explication technique sur les mesures effectuées et sur le protocole relatif à l'acquisition des données en 3 à 4 paragraphes. Vous ajouterez aussi un paragraphe qui détaille les outils logiciels et statistiques utilisés (logiciels et versions des logiciels). Un simple copier-coller du matériel et méthodes du bloc-notes ne sera PAS considéré comme acceptable. -->
 
-...Votre matmet ici...
+Les mesures ont été effectuées par les étudiants de deuxième année de l'UMONS. Les données mesurées ont été décidé ensemble dans un dictionnaire de données. L'encodement des données a été réalisé de sorte à assurer l'anomymat.
+
+Nous avons effectué notre analyse des données avec le logiciel R (\`r R.version.string\`) et avec le package {inferit} version \`r packageVersion("inferit")\` dans la \[SciViews Box 2024\] (https://www.sciviews.org/software/svbox/) dans \[SaturnCloud\] (https://saturncloud.io/).
 
 # Résultats
 
