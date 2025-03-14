@@ -343,6 +343,14 @@ t.test(data = biometry, imc ~ genre, alternative = "greater", conf.level =0.95, 
 
 <!-- Interprétation statistique et biologique -->
 
+La valeur *p* de 0.37 est supérieur au seuil α choisi de 0,05. Donc, nous ne rejetons pas H0.
+
+On ne peut pas dire que, pour notre échantillon, les hommes ont significativement un IMC plus élevé que les femmes.
+
+Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE
+ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : "Les hommes possèdent un IMC
+moyen supérieur aux femmes".
+
 ### Test t de Student 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
