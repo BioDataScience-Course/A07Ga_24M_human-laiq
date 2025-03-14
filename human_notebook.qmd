@@ -1,7 +1,3 @@
-```{r}
-
-```
-
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
 author: "Lila Franchin, Arthur Miroux, Irma Gaziaux, Quentin Dewulf "
@@ -272,7 +268,12 @@ biometry$age_rec <- cut(biometry$age,
   dig.lab = 4,
   breaks = c(18, 40, 85)
 )
-bio_tab <- table(biometry$age_rec, biometry$bmi)
+biometry$imc_rec <- cut(biometry$imc,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(16.5, 18.5, 25.00, 30.00, 40.00))
+bio_tab <- table(biometry$age_rec, biometry$imc_rec)
 tabularise(bio_tab)
 ```
 
