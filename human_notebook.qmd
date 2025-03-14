@@ -1,3 +1,7 @@
+```{r}
+
+```
+
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
 author: "Lila Franchin, Arthur Miroux, Irma Gaziaux, Quentin Dewulf "
@@ -58,12 +62,22 @@ chart(data=biometry,masse_corr ~taille %col=% genre  )+
 
   geom_point()
 ```
+
 ```{r tab2}
+biometry %>.%
+sfilter(., alcool > 3 , fumeur>20  ) %>.%
+sselect (.,masse, alcool, fumeur) %>.%
+sgroup_by (., masse , alcool, fumeur)%>.%
+ssummarise(.,"moyenne" = fmean(masse)) -> tab2
+tabularise(tab2)
+
+```
+
+```{r tab3}
 
 
 
 ### Description par Irma
-```{r graph3}
 biometry$masse_rec <- cut(biometry$masse, include.lowest = FALSE, right = TRUE, breaks = c(40,60,80,100))
 chart(data = biometry, ~ masse_rec %fill=% alimentation)+
   geom_bar()+
