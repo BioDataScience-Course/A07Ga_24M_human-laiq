@@ -347,9 +347,7 @@ La valeur *p* de 0.37 est supérieur au seuil α choisi de 0,05. Donc, nous ne r
 
 On ne peut pas dire que, pour notre échantillon, les hommes ont significativement un IMC plus élevé que les femmes.
 
-Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE
-ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : "Les hommes possèdent un IMC
-moyen supérieur aux femmes".
+Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : "Les hommes possèdent un IMC moyen supérieur aux femmes".
 
 ### Test t de Student 2
 
