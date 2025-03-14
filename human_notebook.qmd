@@ -77,9 +77,9 @@ chart(data=biometry,masse_corr ~taille %col=% genre  )+
 ```{r tab2}
 biometry %>.%
 sfilter(., alcool > 3 , fumeur>20  ) %>.%
-sselect (.,masse, alcool, fumeur) %>.%
-sgroup_by (., masse , alcool, fumeur)%>.%
-ssummarise(.,"moyenne" = fmean(masse)) -> tab2
+sselect (.,masse_corr, alcool, fumeur) %>.%
+sgroup_by (., masse_corr , alcool, fumeur)%>.%
+ssummarise(.,"moyenne" = fmean(masse_corr)) -> tab2
 tabularise(tab2)
 ```
 
@@ -175,7 +175,8 @@ tabularise(tableau4)
 
 ```{r indice2}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-
+biometry %>.%
+  smutate(.,  rapport_tour_taille_taille = tour_taille/taille )
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
@@ -233,7 +234,9 @@ combine_charts(list(a, b), common.legend = TRUE)
 
 ```{r indice4}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-
+biometry %>.% 
+  smutate(., imc = masse_corr / ((taille/100)^2)) ->
+  biometry
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
