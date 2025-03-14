@@ -233,7 +233,9 @@ combine_charts(list(a, b), common.legend = TRUE)
 
 ```{r indice4}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-
+biometry %>.% 
+  smutate(., imc = masse_corr / ((taille/100)^2)) ->
+  biometry
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
