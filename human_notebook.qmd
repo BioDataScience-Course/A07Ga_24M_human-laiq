@@ -176,23 +176,36 @@ tabularise(tableau4)
 ```{r indice2}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 biometry %>.%
-  smutate(.,  rapport_tour_taille_taille = tour_taille/taille )
+  smutate(.,  rapport_tour_taille_taille = tour_taille/taille ) -> biometry
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice2}
 # Graphique ou tableau utilisant l'indice calculé.
+give_n <- function(x) {
+  c(y = max(x) * 1.1, label = length(x))
+}
 
+## Recodage de biometry$sucre en biometry$sucre_rec
+biometry$sucre_rec <- biometry$sucre %>%
+  fct_recode(
+    "rarement" = "jamais"
+  ) 
+    
+chart(data = biometry,rapport_tour_taille_taille  ~ sucre_rec) + 
+  geom_boxplot(na.rm= TRUE)+
+  stat_summary(fun.data = give_n, geom = "text", hjust = 0.5) +
+labs(y= "Rapport tour de taille /taille")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Les personnes consommant souvent du sucre ont un rapport tour de taille / taille plus bas que celles qui consomment rarement de sucre. 
 
--   ...
+-  La majorité des individus ont un rapport tour de taille/taille superieur à 0.5.
 
--   ...
+- Nous remarquons la présence de valeurs extrêmes dans la catégorie "souvent"
 
 ### Indice 3
 
