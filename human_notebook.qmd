@@ -1,7 +1,3 @@
-```{r}
-
-```
-
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
 author: "Lila Franchin, Arthur Miroux, Irma Gaziaux, Quentin Dewulf "
@@ -281,7 +277,12 @@ biometry$age_rec <- cut(biometry$age,
   dig.lab = 4,
   breaks = c(18, 40, 85)
 )
-bio_tab <- table(biometry$age_rec, biometry$bmi)
+biometry$imc_rec <- cut(biometry$imc,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(16.5, 18.5, 25.00, 30.00, 40.00))
+bio_tab <- table(biometry$age_rec, biometry$imc_rec)
 tabularise(bio_tab)
 ```
 
@@ -330,14 +331,14 @@ chart(data = biometry, bmi ~ genre)+
 
 <!-- Hypothèse nulle et alternative -->
 
-H0 : moyenne(bmiF) - moyenne(bmiH) = 0
+H0 : moyenne(bmiH) - moyenne(bmiF) = 0
 
-H1 : moyenne(bmiF) - moyenne(bmiH) != 0
+H1 : moyenne(bmiH) - moyenne(bmiF) \> 0
 
 <!-- Vérification des conditions d'application -->
 
 ```{r test_t_1}
-t.test(data = biometry, bmi ~ genre, alternative = "two.sided", conf.level =0.95, var.equal = FALSE)
+t.test(data = biometry, imc ~ genre, alternative = "greater", conf.level =0.95, var.equal = TRUE)
 ```
 
 <!-- Interprétation statistique et biologique -->
