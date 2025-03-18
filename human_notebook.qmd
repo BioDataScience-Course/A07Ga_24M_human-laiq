@@ -318,7 +318,9 @@ chisq.test(bio_tab)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
-
+  chart(data=biometry,~ imc | genre)+
+  geom_histogram(na.rm=TRUE)+
+  labs(y="Nombre de personnes", x="IMC")
 
 ```
 
