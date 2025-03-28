@@ -466,7 +466,15 @@ chart$qqplot(biometry_anova1, lang = "fr")
 
 Il y a homoscédasticité des variances au seuil alpha de 5 %.
 
-Le plan n'est pas balance
+Le plan n'est pas balancé ( il n'y a pas le même nombre d'observations dans chaque sous populations). Il faudra donc être critique lors de l'analyse des données.
+
+Il y a normalité de la distribution.
+
+Il n'y a pas différence des moyennes. Ce qui signifie que l'hypothèse nulle n'est pas rejetée.
+
+On ne peut pas montrer de manière significative le lien entre le temps de sommeil et l' IMC au seuil alpha de 5%.
+
+Nos résultats ne sont pas en raccord avec l'article Sommeil et nutrition de l'Institut National du Sommeil et de la Vigilance (lui même basé sur l'article "Effects of poor and short sleep on glucose metabolism and obesity risk" réalisé par Spiegel K, Tasali E, Leproult R , Van Couter E.
 
 ### ANOVA à un facteur 2
 
