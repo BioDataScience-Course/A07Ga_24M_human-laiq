@@ -331,11 +331,18 @@ Ceci confirme les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE
 
 ```
 
+```{r}
+
+table(biometry$imc_rec , biometry$sucre_rec)
+```
+
 <!--% Hypothèse nulle et alternative -->
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
+
+chisq.test(table(biometry$imc_rec , biometry$sucre_rec)) |>tabularise()
 
   
 ```
@@ -461,7 +468,13 @@ chart$qqplot(biometry_anova1, lang = "fr")
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_1}
-
+biometry %>.%
+  sgroup_by(., activite_physique) %>.%
+  ssummarise(., 
+    "IMC moyen"  = fmean(imc),
+    "Ecart-type IMC" = fsd(imc),
+    "Nombre d'individus" = fnobs(imc)) -> anova2
+  tabularise(anova2)
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -479,7 +492,7 @@ chart$qqplot(biometry_anova1, lang = "fr")
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-anova(anova2 <- lm(data = biometry, masse_corr ~ age_rec)) |> tabularise()
+
 ```
 
 <!--% Hypothèse nulle et alternative -->
