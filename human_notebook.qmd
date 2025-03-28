@@ -338,6 +338,10 @@ table(biometry$imc_rec , biometry$sucre_rec)
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 = dépendance
+
+H1 = indépendance
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
@@ -385,15 +389,32 @@ Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR D
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_2}
-
+## Recodage de biometry$fumeur en biometry$fumeur_rec
+biometry33D$fumeur_rec <- cut(biometry33D$fumeur,
+  include.lowest = FALSE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 1, 300))
+droplevels(biometry33D$fumeur_rec)
+drop_na(biometry33D, fumeur_rec) %>.%
+chart(data = ., rapport_tour_taille_taille ~ fumeur_rec) +
+  geom_boxplot(na.rm = TRUE) +
+  ylab("Rapport tour taille/taille") +
+  xlab("Nombre de cigarettes par semaine") +
+  ggtitle("Distribution du rapport tour de taille/taille par consommation de cigarettes par semaine")
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 : moyenne rapport tour taille et taille - moyenne rapport tour taille et taille = 0
+
+H1 : moyenne rapport tour taille et taille - moyenne rapport tour taille et taille = 0
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_t_2}
-
+t.test(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec,
+  alternative = "two.sided", conf.level = 0.95, var.equal=TRUE)
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -443,6 +464,10 @@ chart$qqplot(biometry_anova1, lang = "fr")
 
 <!--% Interprétation statistique et biologique -->
 
+Il y a homoscédasticité des variances au seuil alpha de 5 %.
+
+Le plan n'est pas balance
+
 ### ANOVA à un facteur 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
@@ -485,12 +510,31 @@ tabularise(anova2)
 
 ```
 
+```{r}
+chart(data = biometry, imc ~ sommeil_rec) +
+   geom_boxplot() +
+    geom_jitter(width = 0.05, alpha = 0.5) +
+   stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
+```
+
 <!--% Hypothèse nulle et alternative -->
+
+H0 : moyenne(\[6,8\]) = moyenne(\[4,6\]) = moyenne(\[8,10\])
+
+H1 : moyenne(\[6,8\]) != moyenne(\[4,6\]) ou moyenne(\[6,8\]) != moyenne(\[8,10\]) ou moyenne(\[4,6\]) != moyenne(\[8,10\])
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
+bartlett.test(data = biometry, imc ~ sommeil_rec)
+```
 
+```{r}
+anova(biometry_anova1 <- lm(data = biometry, imc ~ sommeil_rec))  
+```
+
+```{r}
+chart$qqplot(biometry_anova1, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->
