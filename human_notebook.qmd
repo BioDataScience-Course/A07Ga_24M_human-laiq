@@ -372,24 +372,32 @@ Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR D
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_2}
-chart(data = biometry, age_rec1 ~ rapport_tour_taille_taille)) +
+## Recodage de biometry$fumeur en biometry$fumeur_rec
+biometry33D$fumeur_rec <- cut(biometry33D$fumeur,
+  include.lowest = FALSE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 1, 300))
+droplevels(biometry33D$fumeur_rec)
+drop_na(biometry33D, fumeur_rec) %>.%
+chart(data = ., rapport_tour_taille_taille ~ fumeur_rec) +
   geom_boxplot(na.rm = TRUE) +
   ylab("Rapport tour taille/taille") +
-  xlab("Groupe d'âge") +
-  ggtitle("Distribution du rapport tour de taille/taille par groupe d'âge")
+  xlab("Nombre de cigarettes par semaine") +
+  ggtitle("Distribution du rapport tour de taille/taille par consommation de cigarettes par semaine")
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
-moyenne rapport - moyenne rapport = 0
+H0 : moyenne rapport tour taille et taille - moyenne rapport tour taille et taille = 0
 
-moyenne rapport - moyenne rapport = 0
+H1 : moyenne rapport tour taille et taille - moyenne rapport tour taille et taille = 0
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_t_2}
-  #àutiliser pour anova car 4niveua au lieu de deux
-t.test(data=biometry, rapport_tour_taille_taille ~ age_rec, altenative="two.sided", conf.level=0.95, var.equal=TRUE)
+t.test(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec,
+  alternative = "two.sided", conf.level = 0.95, var.equal=TRUE)
 ```
 
 <!--% Interprétation statistique et biologique -->
