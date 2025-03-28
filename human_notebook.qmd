@@ -448,7 +448,21 @@ chart$qqplot(biometry_anova1, lang = "fr")
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_2}
-
+# Création de 4 groupes pour activité physique
+biometry$activite_physique_rec <- cut(biometry$activite_physique,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 1, 120, 300, 2000)
+)
+# Tableau pour anova2
+biometry %>.%
+  sgroup_by(., activite_physique_rec) %>.%
+  ssummarise(., 
+    "IMC moyen"  = fmean(imc),
+    "Ecart-type IMC" = fsd(imc),
+    "Nombre d'individus" = fnobs(imc)) -> anova2
+tabularise(anova2)
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -468,13 +482,7 @@ chart$qqplot(biometry_anova1, lang = "fr")
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_1}
-biometry %>.%
-  sgroup_by(., activite_physique) %>.%
-  ssummarise(., 
-    "IMC moyen"  = fmean(imc),
-    "Ecart-type IMC" = fsd(imc),
-    "Nombre d'individus" = fnobs(imc)) -> anova2
-  tabularise(anova2)
+
 ```
 
 <!--% Hypothèse nulle et alternative -->
