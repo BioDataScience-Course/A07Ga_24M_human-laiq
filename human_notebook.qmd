@@ -338,22 +338,24 @@ table(biometry$imc_rec , biometry$sucre_rec)
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 = dépendance
+H0 = indépendance entre les deux variables
 
-H1 = indépendance
+H1 = dépendance entre les deux variables
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
 
 chisq.test(table(biometry$imc_rec , biometry$sucre_rec)) |>tabularise()
-
-  
 ```
 
 <!--% Interprétation statistique et biologique -->
 
-<!--# Travaillez jusqu'ici pour le module 7. -->
+Au seuil alpha = 5%, on ne rejette pas H0, p étant supérieur au seuil. Il n'y a donc pas de dépendance significative entre les variables imc et sucre.
+
+Ces résultats sont assez surprenants en effet, on associe souvnet la consommation de sucre avec le prise de poids comme J.P. Thissen et V. Maindiaux le démontrent dans l'article : "Les sucres : impact sur notre santé" .
+
+<!--% Travaillez jusqu'ici pour le module 7. -->
 
 ### Test t de Student 1
 
@@ -481,15 +483,48 @@ Nos résultats ne sont pas en raccord avec l'article Sommeil et nutrition de l'I
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_2}
+# Création de 4 groupes pour activité physique
+biometry$activite_physique_rec <- cut(biometry$activite_physique,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 1, 120, 300, 2000)
+)
+# Tableau pour anova2
+biometry %>.%
+  sgroup_by(., activite_physique_rec) %>.%
+  ssummarise(., 
+    "IMC moyen"  = fmean(imc),
+    "Ecart-type IMC" = fsd(imc),
+    "Nombre d'individus" = fnobs(imc)) -> anova2
+tabularise(anova2)
+```
 
+```{r graph_anova1_2}
+chart(biometry, imc ~ activite_physique_rec) +
+  geom_boxplot() +
+   geom_jitter(width = 0.05, alpha = 0.5) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
 <!--% Vérification des conditions d'application -->
 
-```{r test_anova1_2}
+```{r test_anova1_2_bartlett}
+bartlett.test(data = biometry, imc ~ activite_physique_rec)
+```
 
+```{r test_anova1_2_anova}
+anova(biometry_anova2 <- lm(data = biometry, imc ~ activite_physique_rec)) 
+```
+
+```{r test_anova1_2_qqplot}
+chart$qqplot(biometry_anova2, lang = "fr")
+```
+
+```{r test_anova1_2_Kruskal}
+kruskal.test(data = biometry, imc ~ activite_physique_rec)
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -501,13 +536,7 @@ Nos résultats ne sont pas en raccord avec l'article Sommeil et nutrition de l'I
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_1}
-biometry %>.%
-  sgroup_by(., activite_physique) %>.%
-  ssummarise(., 
-    "IMC moyen"  = fmean(imc),
-    "Ecart-type IMC" = fsd(imc),
-    "Nombre d'individus" = fnobs(imc)) -> anova2
-  tabularise(anova2)
+
 ```
 
 ```{r}
