@@ -338,22 +338,24 @@ table(biometry$imc_rec , biometry$sucre_rec)
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 = dépendance
+H0 = indépendance entre les deux variables
 
-H1 = indépendance
+H1 = dépendance entre les deux variables
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
 
 chisq.test(table(biometry$imc_rec , biometry$sucre_rec)) |>tabularise()
-
-  
 ```
 
 <!--% Interprétation statistique et biologique -->
 
-<!--# Travaillez jusqu'ici pour le module 7. -->
+Au seuil alpha = 5%, on ne rejette pas H0, p étant supérieur au seuil. Il n'y a donc pas de dépendance significative entre les variables imc et sucre.
+
+Ces résultats sont assez surprenants en effet, on associe souvnet la consommation de sucre avec le prise de poids comme J.P. Thissen et V. Maindiaux le démontrent dans l'article : "Les sucres : impact sur notre santé" .
+
+<!--% Travaillez jusqu'ici pour le module 7. -->
 
 ### Test t de Student 1
 
