@@ -261,7 +261,7 @@ biometry %>.%
 # Graphique ou tableau utilisant l'indice calculé.
   chart(biometry, ~ imc) + 
     geom_histogram(bins = 20) +
-    labs(title = "Répartition de l'Indice de masse corporelle",x = "IMC",y = "Effectifs")
+    labs(title ="Répartition de l'Indice de masse corporelle de notre échantillon",x = "IMC",y = "Effectifs")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
@@ -312,12 +312,11 @@ chisq.test(bio_tab)
 ```
 
 <!--% Interprétation statistique et biologique -->
-
+ 
 La valeur *p* de 4.117e-05 est inférieure au seuil α choisi de 0,05. Donc, nous rejetons H0. Il y a dépendance entre les deux variables.
-
 On peut dire qu'il y a une augmentation significative de l'IMC en fonction de l'âge.
-
 Ceci confirme les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : " l'IMC moyen augmente, par ailleurs, en fonction de l'âge".
+321
 
 ### Test de Chi^2^ 2
 
@@ -335,9 +334,8 @@ Ceci confirme les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-sucre_rec<- dtx (rarement = 19 ,régulièrement =42 , souvent = 82)
 
-chisq.test(sucre_rec,p=c(rarement = 1/3 , régulièrement =1/3 , souvent = 1/3), rescale.p= TRUE)
+  
 ```
 
 <!--% Interprétation statistique et biologique -->
