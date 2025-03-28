@@ -338,6 +338,10 @@ table(biometry$imc_rec , biometry$sucre_rec)
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 = dépendance
+
+H1 = indépendance
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
@@ -442,6 +446,10 @@ chart$qqplot(biometry_anova1, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Il y a homoscédasticité des variances au seuil alpha de 5 %.
+
+Le plan n'est pas balance
 
 ### ANOVA à un facteur 2
 
