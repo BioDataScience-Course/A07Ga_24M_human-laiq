@@ -450,7 +450,13 @@ chart$qqplot(, lang = "fr")
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_1}
-
+biometry %>.%
+  sgroup_by(., activite_physique) %>.%
+  ssummarise(., 
+    "IMC moyen"  = fmean(imc),
+    "Ecart-type IMC" = fsd(imc),
+    "Nombre d'individus" = fnobs(imc)) -> anova2
+  tabularise(anova2)
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -468,7 +474,7 @@ chart$qqplot(, lang = "fr")
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-anova(anova2 <- lm(data = biometry, masse_corr ~ age_rec)) |> tabularise()
+
 ```
 
 <!--% Hypothèse nulle et alternative -->
