@@ -408,9 +408,9 @@ Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR D
 biometry %>.%
   sgroup_by(., sommeil_rec) %>.%
   ssummarise(., 
-    moyenne = fmean(imc),
-    sd = fsd(imc),
-    n = fn(imc))-> anova1
+    "IMC moyen" = fmean(imc),
+    "écart type d'IMC" = fsd(imc),
+    "Nombre d'individu" = fnobs(imc))-> anova1
   tabularise(anova1)
 ```
 
