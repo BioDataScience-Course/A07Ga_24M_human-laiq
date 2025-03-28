@@ -397,6 +397,7 @@ biometry33D$fumeur_rec <- cut(biometry33D$fumeur,
   right = FALSE,
   dig.lab = 4,
   breaks = c(0, 1, 300))
+
 droplevels(biometry33D$fumeur_rec)
 drop_na(biometry33D, fumeur_rec) %>.%
 chart(data = ., rapport_tour_taille_taille ~ fumeur_rec) +
