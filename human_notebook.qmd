@@ -488,7 +488,7 @@ biometry$activite_physique_rec <- cut(biometry$activite_physique,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(0, 1, 120, 300, 2000)
+  breaks = c(0, 1, 120, 300, 1001)
 )
 # Tableau pour anova2
 biometry %>.%
@@ -508,6 +508,10 @@ chart(biometry, imc ~ activite_physique_rec) +
 ```
 
 <!--% Hypothèse nulle et alternative -->
+
+H0 : moyenne(\[0\]) = moyenne(\[1,120\]) = moyenne(\[120,300\]) = moyenne(\[300,1000\])
+
+H1 : moyenne(\[0\]) != moyenne(\[1,120\]) ou moyenne(\[0\]) != moyenne(\[120,300\]) ou moyenne(\[0\]) != moyenne(\[300,1000\]) ou moyenne(\[1,120\]) != moyenne(\[120,300\]) ou moyenne(\[1,120\]) != moyenne(\[300,1000\]) ou moyenne(\[120,300\]) != moyenne(\[300,1000\])
 
 <!--% Vérification des conditions d'application -->
 
