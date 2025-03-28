@@ -397,9 +397,17 @@ biometry33D$fumeur_rec <- cut(biometry33D$fumeur,
   include.lowest = FALSE,
   right = FALSE,
   dig.lab = 4,
+<<<<<<< HEAD
   breaks = c(0, 1, 301))
 
 chart(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec) +
+=======
+  breaks = c(0, 1, 300))
+
+droplevels(biometry33D$fumeur_rec)
+drop_na(biometry33D, fumeur_rec) %>.%
+chart(data = ., rapport_tour_taille_taille ~ fumeur_rec) +
+>>>>>>> af313c55f39e34f2fd2a681b0ffe1b233a79dd4a
   geom_boxplot(na.rm = TRUE) +
   ylab("Rapport tour taille/taille") +
   xlab("Nombre de cigarettes par semaine") +
@@ -431,9 +439,9 @@ t.test(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec,
 biometry %>.%
   sgroup_by(., sommeil_rec) %>.%
   ssummarise(., 
-    moyenne = fmean(imc),
-    sd = fsd(imc),
-    n = fn(imc))-> anova1
+    "IMC moyen" = fmean(imc),
+    "écart type d'IMC" = fsd(imc),
+    "Nombre d'individu" = fnobs(imc))-> anova1
   tabularise(anova1)
 ```
 
@@ -468,7 +476,15 @@ chart$qqplot(biometry_anova1, lang = "fr")
 
 Il y a homoscédasticité des variances au seuil alpha de 5 %.
 
-Le plan n'est pas balance
+Le plan n'est pas balancé ( il n'y a pas le même nombre d'observations dans chaque sous populations). Il faudra donc être critique lors de l'analyse des données.
+
+Il y a normalité de la distribution.
+
+Il n'y a pas différence des moyennes. Ce qui signifie que l'hypothèse nulle n'est pas rejetée.
+
+On ne peut pas montrer de manière significative le lien entre le temps de sommeil et l' IMC au seuil alpha de 5%.
+
+Nos résultats ne sont pas en raccord avec l'article Sommeil et nutrition de l'Institut National du Sommeil et de la Vigilance (lui même basé sur l'article "Effects of poor and short sleep on glucose metabolism and obesity risk" réalisé par Spiegel K, Tasali E, Leproult R , Van Couter E.
 
 ### ANOVA à un facteur 2
 
@@ -480,7 +496,7 @@ biometry$activite_physique_rec <- cut(biometry$activite_physique,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(0, 1, 120, 300, 2000)
+  breaks = c(0, 1, 120, 300, 1001)
 )
 # Tableau pour anova2
 biometry %>.%
@@ -500,6 +516,10 @@ chart(biometry, imc ~ activite_physique_rec) +
 ```
 
 <!--% Hypothèse nulle et alternative -->
+
+H0 : moyenne(\[0\]) = moyenne(\[1,120\]) = moyenne(\[120,300\]) = moyenne(\[300,1000\])
+
+H1 : moyenne(\[0\]) != moyenne(\[1,120\]) ou moyenne(\[0\]) != moyenne(\[120,300\]) ou moyenne(\[0\]) != moyenne(\[300,1000\]) ou moyenne(\[1,120\]) != moyenne(\[120,300\]) ou moyenne(\[1,120\]) != moyenne(\[300,1000\]) ou moyenne(\[120,300\]) != moyenne(\[300,1000\])
 
 <!--% Vérification des conditions d'application -->
 
@@ -535,31 +555,12 @@ Le test d'ANOVA montre que le rapport des variances intergroupe/intragroupe est 
 
 ```
 
-```{r}
-chart(data = biometry, imc ~ sommeil_rec) +
-   geom_boxplot() +
-    geom_jitter(width = 0.05, alpha = 0.5) +
-   stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
-```
-
 <!--% Hypothèse nulle et alternative -->
-
-H0 : moyenne(\[6,8\]) = moyenne(\[4,6\]) = moyenne(\[8,10\])
-
-H1 : moyenne(\[6,8\]) != moyenne(\[4,6\]) ou moyenne(\[6,8\]) != moyenne(\[8,10\]) ou moyenne(\[4,6\]) != moyenne(\[8,10\])
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
-bartlett.test(data = biometry, imc ~ sommeil_rec)
-```
 
-```{r}
-anova(biometry_anova1 <- lm(data = biometry, imc ~ sommeil_rec))  
-```
-
-```{r}
-chart$qqplot(biometry_anova1, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->
