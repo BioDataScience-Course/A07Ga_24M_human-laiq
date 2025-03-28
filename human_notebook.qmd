@@ -318,6 +318,9 @@ chisq.test(bio_tab)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
+  chart(data=biometry,~ imc | sucre_rec)+
+  geom_histogram(na.rm=TRUE)+
+  labs(y="Nombre de personnes", x="IMC")
 
 ```
 
@@ -326,7 +329,9 @@ chisq.test(bio_tab)
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
+sucre_rec<- dtx (rarement = 19 ,régulièrement =42 , souvent = 82)
 
+chisq.test(sucre_rec,p=c(rarement = 1/3 , régulièrement =1/3 , souvent = 1/3), rescale.p= TRUE)
 ```
 
 <!--% Interprétation statistique et biologique -->
