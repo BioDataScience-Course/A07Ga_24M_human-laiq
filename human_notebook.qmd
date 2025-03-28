@@ -490,12 +490,31 @@ biometry %>.%
 tabularise(anova2)
 ```
 
+```{r graph_anova1_2}
+chart(biometry, imc ~ activite_physique_rec) +
+  geom_boxplot() +
+   geom_jitter(width = 0.05, alpha = 0.5) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
+```
+
 <!--% Hypothèse nulle et alternative -->
 
 <!--% Vérification des conditions d'application -->
 
-```{r test_anova1_2}
+```{r test_anova1_2_bartlett}
+bartlett.test(data = biometry, imc ~ activite_physique_rec)
+```
 
+```{r test_anova1_2_anova}
+anova(biometry_anova2 <- lm(data = biometry, imc ~ activite_physique_rec)) 
+```
+
+```{r test_anova1_2_qqplot}
+chart$qqplot(biometry_anova2, lang = "fr")
+```
+
+```{r test_anova1_2_Kruskal}
+kruskal.test(data = biometry, imc ~ activite_physique_rec)
 ```
 
 <!--% Interprétation statistique et biologique -->
