@@ -313,6 +313,12 @@ chisq.test(bio_tab)
 
 <!--% Interprétation statistique et biologique -->
 
+La valeur *p* de 4.117e-05 est inférieure au seuil α choisi de 0,05. Donc, nous rejetons H0. Il y a dépendance entre les deux variables.
+
+On peut dire qu'il y a une augmentation significative de l'IMC en fonction de l'âge.
+
+Ceci confirme les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : " l'IMC moyen augmente, par ailleurs, en fonction de l'âge".
+
 ### Test de Chi^2^ 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
