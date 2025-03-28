@@ -477,12 +477,31 @@ biometry %>.%
   tabularise(anova2)
 ```
 
+```{r}
+chart(data = biometry, imc ~ sommeil_rec) +
+   geom_boxplot() +
+    geom_jitter(width = 0.05, alpha = 0.5) +
+   stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
+```
+
 <!--% Hypothèse nulle et alternative -->
+
+H0 : moyenne(\[6,8\]) = moyenne(\[4,6\]) = moyenne(\[8,10\])
+
+H1 : moyenne(\[6,8\]) != moyenne(\[4,6\]) ou moyenne(\[6,8\]) != moyenne(\[8,10\]) ou moyenne(\[4,6\]) != moyenne(\[8,10\])
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
+bartlett.test(data = biometry, imc ~ sommeil_rec)
+```
 
+```{r}
+anova(biometry_anova1 <- lm(data = biometry, imc ~ sommeil_rec))  
+```
+
+```{r}
+chart$qqplot(biometry_anova1, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->
