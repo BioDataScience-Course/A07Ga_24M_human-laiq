@@ -391,15 +391,15 @@ Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR D
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_2}
+biometry33D <- sdrop_na(biometry, taille)
 ## Recodage de biometry$fumeur en biometry$fumeur_rec
 biometry33D$fumeur_rec <- cut(biometry33D$fumeur,
   include.lowest = FALSE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(0, 1, 300))
-droplevels(biometry33D$fumeur_rec)
-drop_na(biometry33D, fumeur_rec) %>.%
-chart(data = ., rapport_tour_taille_taille ~ fumeur_rec) +
+  breaks = c(0, 1, 301))
+
+chart(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec) +
   geom_boxplot(na.rm = TRUE) +
   ylab("Rapport tour taille/taille") +
   xlab("Nombre de cigarettes par semaine") +
@@ -520,6 +520,10 @@ kruskal.test(data = biometry, imc ~ activite_physique_rec)
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Le test de Bartlett, p est supérieur au seuil alpha à 5% donc il n'y a pas d'homoscédasticité des variances des différents groupes
+
+Le test d'ANOVA montre que le rapport des variances intergroupe/intragroupe est très grande ce qui signifie que les variances intergroupes sont élevées, la différence des moyennes est donc significative
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
