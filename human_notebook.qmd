@@ -586,15 +586,44 @@ anova(biometry_anova2comp)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
+ ## Recodage de biometry$eau en biometry$eau_rec
+biometry$eau_rec <- cut(biometry$eau,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 0.75, 1.5, 4))
+chart(data = biometry, imc ~ eau_rec) +
+  geom_boxplot() +
+  geom_jitter(width = 0.05, alpha = 0.3) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
+```
+
+```{r}
+chart(data=biometry, imc ~ eau_rec %col=% genre %group=% genre)+
+  geom_point() +
+  geom_line()
+  
+```
+
+```{r}
 
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 :
+
+H1 :
+
 <!--% Vérification des conditions d'application -->
 
-```{r test_anova2_2}
+```{r}
+bartlett.test(data=biometry, imc ~ interaction(genre, eau_rec))
+```
 
+```{r}
+anova2 <- lm(data=biometry, imc ~ eau_rec * genre)
+anova(anova2) |> tabularise(.)
 ```
 
 <!--% Interprétation statistique et biologique -->
