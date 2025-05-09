@@ -266,14 +266,13 @@ biometry %>.%
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
-- La distribution unimodale asymétrique avec un étalement à droite, quand l'IMC augmente.
+-   La distribution unimodale asymétrique avec un étalement à droite, quand l'IMC augmente.
 
-- On observe un maximum à un IMC de 25, en effet plus de 20 individus de notre population possède un IMC de 25.
+-   On observe un maximum à un IMC de 25, en effet plus de 20 individus de notre population possède un IMC de 25.
 
-- On observe également un deuxième pic pour un IMC de 31 avec 9 individus de notre population possédant cet IMC.
+-   On observe également un deuxième pic pour un IMC de 31 avec 9 individus de notre population possédant cet IMC.
 
-- Ces résultats peuvent éventuellement être expliqués par la tranche d'âge, qui correspond à celle des étudiants et de leur entourage.
-
+-   Ces résultats peuvent éventuellement être expliqués par la tranche d'âge, qui correspond à celle des étudiants et de leur entourage.
 
 ## Tests d'hypothèses
 
@@ -356,7 +355,7 @@ chisq.test(table(biometry$imc_rec , biometry$sucre_rec)) |>tabularise()
 
 Au seuil alpha = 5%, on ne rejette pas H0, p étant supérieur au seuil. Il n'y a donc pas de dépendance significative entre les variables imc et sucre c'est-à-dire entre l'IMC et la prise de sucre par semaine.
 
-Ces résultats sont assez surprenants, car on associe généralement la consommation de sucre à la prise de poids, comme le montrent J.P. Thissen et V. Maindiaux dans leur article intitulé "Les sucres : impact sur notre santé". Par conséquent, on pourrait s'attendre à un IMC plus élevé chez les personnes ayant une consommation de sucre plus importante dans leur alimentation. 
+Ces résultats sont assez surprenants, car on associe généralement la consommation de sucre à la prise de poids, comme le montrent J.P. Thissen et V. Maindiaux dans leur article intitulé "Les sucres : impact sur notre santé". Par conséquent, on pourrait s'attendre à un IMC plus élevé chez les personnes ayant une consommation de sucre plus importante dans leur alimentation.
 
 <!--% Travaillez jusqu'ici pour le module 7. -->
 
@@ -536,11 +535,12 @@ kruskal.test(data = biometry, imc ~ activite_physique_rec)
 ```
 
 <!--% Interprétation statistique et biologique -->
-Le test ANOVA donne une p-value supérieure à 5%, ce qui signifie que l'activité physique n'a pas d'effet significatif sur l'IMC. De plus, la valeur de F est faible (inférieure à 1), indiquant que les variances entre les groupes sont faibles par rapport aux variances au sein des groupes. Ainsi, les moyennes d'IMC ne diffèrent pas de manière significative selon les niveaux d'activité physique. 
 
-Les tests de vérification des conditions d'application (Bartlett, quantile-quantile et Kruskal-Wallis) confirment la validité de l'ANOVA, montrant que les variables respectent l'homoscédasticité et la normalité. Le test non-paramétrique aboutit aux mêmes conclusions que le test paramétrique. 
+Le test ANOVA donne une p-value supérieure à 5%, ce qui signifie que l'activité physique n'a pas d'effet significatif sur l'IMC. De plus, la valeur de F est faible (inférieure à 1), indiquant que les variances entre les groupes sont faibles par rapport aux variances au sein des groupes. Ainsi, les moyennes d'IMC ne diffèrent pas de manière significative selon les niveaux d'activité physique.
 
-Ces résultats sont surprenants, car on pourrait s'attendre à ce que l'IMC soit influencé par l'activité physique. En effet, l'IMC est souvent perçu comme indicateur de santé. Toutefois, l'IMC présente plusieurs limites en tant qu'indicateur de santé, car il ne prend pas en compte d'autres aspects physiologiques, comme le souligne l'article "Effets physiologiques de l’activité physique" de Frédéric Costes. 
+Les tests de vérification des conditions d'application (Bartlett, quantile-quantile et Kruskal-Wallis) confirment la validité de l'ANOVA, montrant que les variables respectent l'homoscédasticité et la normalité. Le test non-paramétrique aboutit aux mêmes conclusions que le test paramétrique.
+
+Ces résultats sont surprenants, car on pourrait s'attendre à ce que l'IMC soit influencé par l'activité physique. En effet, l'IMC est souvent perçu comme indicateur de santé. Toutefois, l'IMC présente plusieurs limites en tant qu'indicateur de santé, car il ne prend pas en compte d'autres aspects physiologiques, comme le souligne l'article "Effets physiologiques de l'activité physique" de Frédéric Costes.
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
