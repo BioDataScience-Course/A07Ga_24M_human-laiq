@@ -409,9 +409,9 @@ chart(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec) +
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : moyenne rapport tour taille et taille - moyenne rapport tour taille et taille = 0
+H0 : moyenne rapport tour taille et taille des fumeurs- moyenne rapport tour taille et taille des non fumeurs= 0
 
-H1 : moyenne rapport tour taille et taille - moyenne rapport tour taille et taille != 0
+H1 : moyenne rapport tour taille et taille des fumeurs - moyenne rapport tour taille et taille des non fumeurs!= 0
 
 <!--% Vérification des conditions d'application -->
 
@@ -422,7 +422,9 @@ t.test(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec,
 
 <!--% Interprétation statistique et biologique -->
 
-On ne rejette pas H0 au seuil alpha de 5%. Donc on ne peut montrer de manière significative qu'il y a un rapport entre le tour de taille taille
+On ne rejette pas H0 au seuil alpha de 5%. Donc on ne peut montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille taille des fumeurs et non fumeurs.
+
+Ces résultats sont en accords avec
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
