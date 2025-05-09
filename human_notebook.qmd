@@ -400,17 +400,8 @@ biometry33D$fumeur_rec <- cut(biometry33D$fumeur,
   include.lowest = FALSE,
   right = FALSE,
   dig.lab = 4,
-<<<<<<< HEAD
-=======
-
->>>>>>> b286fdbd9e4a973aaffe1bc798f2775385d44e92
   breaks = c(0, 1, 301))
 chart(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec) +
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b286fdbd9e4a973aaffe1bc798f2775385d44e92
   geom_boxplot(na.rm = TRUE) +
   ylab("Rapport tour taille/taille") +
   xlab("Nombre de cigarettes par semaine") +
