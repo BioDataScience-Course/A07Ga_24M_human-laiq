@@ -554,6 +554,10 @@ chart(data=biometry, imc ~ fast_food | genre) + geom_point()
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 : Les moyennes (imc, fast-food, genre) sont égales entre elle.
+
+H1 : Les moyennes (imc, fast-food, genre) ne sont pas égales entre elles.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
@@ -574,10 +578,13 @@ chart(data = biometry, imc ~ fast_food_rec %col=% genre %group=% genre) +
 
 ```{r}
 biometry_anova2comp <- lm(data = biometry, imc ~ fast_food_rec * genre)
-anova(biometry_anova2comp)
+anova(biometry_anova2comp) %>.%
+tabularise(.)
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Les résultats de notre test, ne nous permettent pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre ou de la consommation de fast-food sur l'imc au seuil de 5%. Il n'y a pas d'interaction entre le genre et le fast-food.
 
 ### ANOVA à deux facteurs 2
 
