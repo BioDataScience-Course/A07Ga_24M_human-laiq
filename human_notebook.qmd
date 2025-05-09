@@ -562,7 +562,7 @@ H1 : Les moyennes (imc, fast-food, genre) ne sont pas égales entre elles.
 
 <!--% Vérification des conditions d'application -->
 
-```{r test_anova2_1}
+```{r test_bartlett_anova2_1}
 smutate## Recodage de biometry$fast_food en biometry$fast_food_rec
 biometry$fast_food_rec <- cut(biometry$fast_food,
   include.lowest = TRUE,
@@ -572,13 +572,21 @@ biometry$fast_food_rec <- cut(biometry$fast_food,
 bartlett.test(data = biometry, imc ~ interaction(fast_food_rec, genre))
 ```
 
-```{r}
-chart(data = biometry, imc ~ fast_food_rec %col=% genre %group=% genre) +
-    geom_line() +
-    geom_point()
+```{r testinteractionanova2_1}
+biometry %>.%
+  sgroup_by(., fast_food_rec, genre) %>.%
+  ssummarise(., imc_groups = mean(imc)) %>.%
+  print(.) %>.%
+chart(., imc_groups ~ fast_food_rec %col=% genre %group=% genre) +
+    geom_line(na.rm=TRUE) +
+    geom_point(na.rm=TRUE)
 ```
 
-```{r}
+```{r testnormalité_anova2_1}
+chart$qqplot(biometry_anova2comp)
+```
+
+```{r test_anova2_1}
 biometry_anova2comp <- lm(data = biometry, imc ~ fast_food_rec * genre)
 anova(biometry_anova2comp) %>.%
 tabularise(.)
@@ -586,7 +594,9 @@ tabularise(.)
 
 <!--% Interprétation statistique et biologique -->
 
-Les résultats de notre test, ne nous permettent pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre ou de la consommation de fast-food sur l'imc au seuil de 5%. Il n'y a pas d'interaction entre le genre et le fast-food.
+Notre test de Bartlett, nous donnait un résultat difficile à analyser. Nous avons donc décider de faire un test avec interactions pour vérifier si les variables étaient ou non en interaction. Il n'y a pas d'interaction entre le genre et le fast-food. Avec les résultats de notre test anova, nous pouvons conclure qu'il n'y a pas d'interaction entre la variable genre et la variable fast_food_rec. Ce qui signifie biologiquement parlant que le nombre de fastfood par mois n'est pas corrélé avec le genre.
+
+Les résultats de notre test, ne nous permettent pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre ou de la consommation de fast-food sur l'imc au seuil de 5%. Cela peut nous étonner car d'après un article du docteur Gabrielle de Torrenté de la Jara basé sur des études statistiques, l'effet de la consommation de fast-food sur la prise de poids est significative (Consommation dans les fast-foods : prise de poids et résistance à l\'insuline... une forte association positive). Nos résultats divergents de la littérature scientifique peuvent être expliqué par le faible nombre d'individus dans notre étude et l'échantillonage peu correct.
 
 ### ANOVA à deux facteurs 2
 
