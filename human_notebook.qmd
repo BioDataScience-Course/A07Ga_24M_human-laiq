@@ -409,9 +409,9 @@ chart(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec) +
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : moyenne rapport tour taille et taille - moyenne rapport tour taille et taille = 0
+H0 : moyenne rapport tour taille et taille des fumeurs- moyenne rapport tour taille et taille des non fumeurs= 0
 
-H1 : moyenne rapport tour taille et taille - moyenne rapport tour taille et taille != 0
+H1 : moyenne rapport tour taille et taille des fumeurs - moyenne rapport tour taille et taille des non fumeurs!= 0
 
 <!--% Vérification des conditions d'application -->
 
@@ -422,7 +422,9 @@ t.test(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec,
 
 <!--% Interprétation statistique et biologique -->
 
-On ne rejette pas H0 au seuil alpha de 5%. Donc on ne peut montrer de manière significative qu'il y a un rapport entre le tour de taille taille
+On ne rejette pas H0 au seuil alpha de 5%. Donc on ne peut montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille taille des fumeurs et non fumeurs.
+
+Ces résultats sont en accords avec
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
@@ -591,15 +593,44 @@ Les résultats de notre test, ne nous permettent pas de rejeter H0. Il n'y a don
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
+ ## Recodage de biometry$eau en biometry$eau_rec
+biometry$eau_rec <- cut(biometry$eau,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 0.75, 1.5, 4))
+chart(data = biometry, imc ~ eau_rec) +
+  geom_boxplot() +
+  geom_jitter(width = 0.05, alpha = 0.3) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
+```
+
+```{r}
+chart(data=biometry, imc ~ eau_rec %col=% genre %group=% genre)+
+  geom_point() +
+  geom_line()
+  
+```
+
+```{r}
 
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 :
+
+H1 :
+
 <!--% Vérification des conditions d'application -->
 
-```{r test_anova2_2}
+```{r}
+bartlett.test(data=biometry, imc ~ interaction(genre, eau_rec))
+```
 
+```{r}
+anova2 <- lm(data=biometry, imc ~ eau_rec * genre)
+anova(anova2) |> tabularise(.)
 ```
 
 <!--% Interprétation statistique et biologique -->
