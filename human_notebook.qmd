@@ -602,16 +602,23 @@ chart(data=biometry, imc ~ eau_rec %col=% genre %group=% genre)+
   geom_line()
   
 ```
+
 ```{r}
 
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 :
+
+H1 :
+
 <!--% Vérification des conditions d'application -->
+
 ```{r}
 bartlett.test(data=biometry, imc ~ interaction(genre, eau_rec))
 ```
+
 ```{r}
 anova2 <- lm(data=biometry, imc ~ eau_rec * genre)
 anova(anova2) |> tabularise(.)
