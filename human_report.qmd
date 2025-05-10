@@ -47,7 +47,7 @@ L'impact de différents facteurs tels que l'âge ou le genre sur le risque de su
 
 <!--% Cette section doit comprendre une explication technique sur les mesures effectuées et sur le protocole relatif à l'acquisition des données en 3 à 4 paragraphes. Vous ajouterez aussi un paragraphe qui détaille les outils logiciels et statistiques utilisés (logiciels et versions des logiciels). Un simple copier-coller du matériel et méthodes du bloc-notes ne sera PAS considéré comme acceptable. -->
 
-Les mesures ont été effectuées par les étudiants de deuxième année de l'UMONS. Les données mesurées ont été décidé ensemble dans un dictionnaire de données. L'encodement des données a été réalisé de sorte à assurer l'anomymat.
+Les mesures ont été effectuées par les étudiants de deuxième année de l'UMONS. Les données mesurées ont été décidées ensemble dans un dictionnaire de données. L'encodement des données a été réalisé de sorte à assurer l'anomymat.
 
 Nous avons effectué notre analyse des données avec le logiciel R (\`r R.version.string\`) et avec le package {inferit} version \`r packageVersion("inferit")\` dans la \[SciViews Box 2024\] (https://www.sciviews.org/software/svbox/) dans \[SaturnCloud\] (https://saturncloud.io/).
 
@@ -65,9 +65,40 @@ Nous avons effectué notre analyse des données avec le logiciel R (\`r R.versio
 
 <!--% Sélectionnez les 4 tests d'hypothèses les plus pertinents depuis `human_notebook.qmd`, ainsi bien sûr que les calculs des indices nécessaires que vous placerez juste au-dessus de vos tests. Ces tests doivent répondre à votre question de recherche (le but). Reformulez les interprétations pour former un texte qui se lit en continu. -->
 
-...Vos tests d'hypothèses ici...
+ 1) Test de chi carré d'indépendance, lien entre l'âge et l'IMC
 
-# Discussion et conclusions
+Calcul de l'IMC : mass_corr/taille1\^2
+
+-   H₀ : l\'âge et l\'IMC sont indépendants. 
+
+```{=html}
+<!-- -->
+```
+-   H₁ : l'âge et l'IMC sont dépendants.
+
+    2\) Test t Student, comparaison de l'IMC entre les hommes et les femmes
+
+-   H₀ : la moyenne de l'IMC chez les hommes est égale à celles de femmes
+
+-   H₁ : la moyenne de l'IMC chez les hommes est différente à celles de femmes
+
+    3\) Test t pour les moyennes indépendantes, effet du tabagisme sur la répartition de la graisse abdominale
+
+    Calcul rapport taille/tour de taille (=répartition de la graisse abdominale) : rapport_tour_taille_taille = tour_taille/taille
+
+-   H₀ : pas de différence entre les fumeurs et les non-fumeurs sur la moyenne des rapports taille/tour de taille.
+
+-   H₁ : différence entre les fumeurs et les non-fumeurs sur la moyenne des rapports taille/tour de taille.
+
+    4\) ANOVA à un facteur, lien entre activité physique et IMC
+
+-   H₀ : l'IMC est le même peu importe le niveau d'heures d'activité physique.
+
+-   H₁ : au moins une moyenne d'IMC diffère avec le nombre d'heures d'activité physique.
+
+    Le test du chi carré révèle une dépendance significative entre l\'âge et l\'IMC au seuil alpha de 5 %, ce qui nous conduit à rejeter l\'hypothèse d\'indépendance (H₀). Cela laisse entendre que le poids a tendance à évoluer avec l\'âge, un constat en accord avec la littérature scientifique, qui souligne fréquemment une prise de poids progressive au fil des années. En revanche, avec une valeur p de 0,37 (bien supérieure au seuil de 0,05), nous ne rejetons pas H₀ dans le cadre de la comparaison des IMC entre hommes et femmes. Autrement dit, il n\'existe pas de différence significative entre les deux genres dans notre échantillon. (Ce résultat pourrait néanmoins être influencé par la taille réduite de l\'échantillon ou par des limites méthodologiques.) Ensuite, le test effectué sur le rapport taille/tour de taille ne met pas non plus en évidence de différence significative au seuil de 5 %, ce qui suggère que le tabagisme n\'a pas d\'impact sur cette mesure dans notre population étudiée. Enfin, les résultats du test ANOVA ne montrent aucune différence significative entre les groupes définis selon le nombre d\'heures d\'activité physique par semaine. Cela indique une absence de lien clair entre niveau d\'activité physique et IMC. Ce résultat contredit les nombreuses études qui démontrent les bienfaits de l\'activité physique sur le poids, (mais cette divergence peut s\'expliquer par la petite taille de notre échantillon ainsi que par le caractère déclaratif des données recueillies.) 
+
+## Discussion et conclusions
 
 <!--% Reprenez les résultats obtenus, discutez-les d'un point de vue biologique en 4 à 5 paragraphes et concluez votre travail. Vous pouvez les mettre également en relation avec vos recherches bibliographiques dans cette section. -->
 
