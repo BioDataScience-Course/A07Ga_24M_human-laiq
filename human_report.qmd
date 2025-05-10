@@ -49,7 +49,7 @@ L'impact de différents facteurs tels que l'âge ou le genre sur le risque de su
 
 Les mesures ont été effectuées par les étudiants de deuxième année de l'UMONS. Les données mesurées ont été décidées ensemble dans un dictionnaire de données. L'encodement des données a été réalisé de sorte à assurer l'anomymat.
 
-Nous avons effectué notre analyse des données avec le logiciel R (\`r R.version.string\`) et avec le package {inferit} version \`r packageVersion("inferit")\` dans la \[SciViews Box 2024\] (https://www.sciviews.org/software/svbox/) dans \[SaturnCloud\] (https://saturncloud.io/).
+Nous avons effectué notre analyse des données avec le logiciel R (r R.version.string) et avec le package {inferit} version r packageVersion("inferit") dans la \[SciViews Box 2024\] (https://www.sciviews.org/software/svbox/) dans \[SaturnCloud\] (https://saturncloud.io/).
 
 # Résultats
 
@@ -59,33 +59,15 @@ Nous avons effectué notre analyse des données avec le logiciel R (\`r R.versio
 
 <!--# N'oubliez pas que ce document doit pouvoir compiler indépendamment du reste. Cela implique que vous ajoutiez un chunk d'importation des données et que vous recalculiez tout ce qui doit l'être... Par contre, un simple copier-coller de toute la partie résultats du bloc-notes ne sera pas considéré comme un travail réalisé : vous devez sélectionner, et éventuellement remanier un peu le code, pour ne conserver que ce qui est utile ici. -->
 
-```{r Description1}
-chart(biometry, ~ age) +  
-  geom_histogram(bins = 80) + 
-  labs(title = "Répartition des âges", y = "Effectifs") +
-  annotate("text", x = Inf, y = Inf, label = paste("Effectif total :", nrow(biometry)), color = "red",
-           hjust = 1.2, vjust = 2, size = 5)
-```
+**1) Détails de l'échantillon**
 
 Premièrement, nous devons mettre en évidence la qualité de notre échantillon. La majorité des participants se trouve entre 18 et 25 ans. De plus, nous avons un biais générationnel, car des tranches d'âge intermédiaires sont largement sous-représentées.
 
-Également, notre effectif total est de 144.
+Également, notre effectif total est seulement de 144 (65 hommes et 79 femmes).
 
 Il convient de noter que cet échantillon n'est pas représentatif de la population belge en raison d'un biais de sélection pour l'analyse de nos résultats.
 
-```{r Descrption2}
-biometry %>.%
-  sselect(., genre, masse_corr, taille, activite_physique, tour_poignet, tour_taille, tour_hanche, sommeil, fast_food, fumeur, eau, alcool) %>.%
-  sgroup_by(., genre) %>.%
-  ssummarise(., 
-    "activite_physique_moyenne" = fmean(activite_physique),
-    "fast_food_moyenne" = fmean(fast_food),
-    "alcool_moyenne" = fmean(alcool),
-    "fumeur_moyenne" = fmean(fumeur)
-    ) -> tableau4
-
-tabularise(tableau4)
-```
+**2) Différences notables entre homme/femmes**
 
 Les principales différences observées entre les hommes et les femmes sont les suivantes :
 
@@ -93,17 +75,27 @@ Les hommes sont plus actifs physiquement et consomment d'avantage de fast-food e
 
 Cependant, les femmes fument plus que les hommes.
 
-```{r Description3}
+**3) Dépendance entre l'age et l'IMC (Test Chi² 1)**
 
-```
+Nous avons montré via un test Chi² qu'il y a bel et bien une augmentation significative de l'IMC en fonction de l'âge.
 
-```{r Description4}
+Ceci était attendu, car les résultats de Thérésa Lebacq indiquait que l'IMC moyen augmente en fonction de l'âge.
 
-```
+**4) Indépendance entre l'IMC et la consommation de sucre (Test Chi² 2)**
 
-```{r Description5}
+Nous avons montré grâce à un test Chi² que la consommation de sucre n'a pas d'impact significatif sur le poids.
 
-```
+Ceci est assez surprenant car on associe généralement une consommation de sucre élevée à un IMC plus important.
+
+**5) Pas d'impact de l'activité physique sur l'IMC (Anova à un facteur 2)**
+
+Après avoir séparé en 4 groupes de nombre équivalent selon l'activité physique, notre test ANOVA a montré que l'activité physique n'a pas d'effet significatif sur l'IMC.
+
+Les variances entre les groupes sont faibles par rapport aux variances au sein des groupes.
+
+Les conditions d'application confirment notre ANOVA et le test non-paramétrique aboutit aux mêmes conclusions.
+
+L'IMC présente des limites en tant qu'indicateur de santé. Comme il ne distingue pas la masse musculaire de la masse grasse, les sportifs pourraient bénéficier d'une évaluation différente de l'IMC.
 
 ## Tests d'hypothèses
 
