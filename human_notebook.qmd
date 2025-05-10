@@ -104,7 +104,9 @@ tabularise(tableau3)
 ```{r graph4}
 chart(biometry, ~ age) +  
   geom_histogram(bins = 80) + 
-  labs(title = "Répartition des âges", y = "Effectifs")
+  labs(title = "Répartition des âges", y = "Effectifs") +
+  annotate("text", x = Inf, y = Inf, label = paste("Effectif total :", nrow(biometry)), color = "red",
+           hjust = 1.2, vjust = 2, size = 5)
 # Note : F : 79 H : 65
 ```
 

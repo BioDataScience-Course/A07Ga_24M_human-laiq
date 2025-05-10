@@ -59,7 +59,51 @@ Nous avons effectué notre analyse des données avec le logiciel R (\`r R.versio
 
 <!--# N'oubliez pas que ce document doit pouvoir compiler indépendamment du reste. Cela implique que vous ajoutiez un chunk d'importation des données et que vous recalculiez tout ce qui doit l'être... Par contre, un simple copier-coller de toute la partie résultats du bloc-notes ne sera pas considéré comme un travail réalisé : vous devez sélectionner, et éventuellement remanier un peu le code, pour ne conserver que ce qui est utile ici. -->
 
-...Vos descriptions des données ici...
+```{r Description1}
+chart(biometry, ~ age) +  
+  geom_histogram(bins = 80) + 
+  labs(title = "Répartition des âges", y = "Effectifs") +
+  annotate("text", x = Inf, y = Inf, label = paste("Effectif total :", nrow(biometry)), color = "red",
+           hjust = 1.2, vjust = 2, size = 5)
+```
+
+Premièrement, nous devons mettre en évidence la qualité de notre échantillon. La majorité des participants se trouve entre 18 et 25 ans. De plus, nous avons un biais générationnel, car des tranches d'âge intermédiaires sont largement sous-représentées.
+
+Également, notre effectif total est de 144.
+
+Il convient de noter que cet échantillon n'est pas représentatif de la population belge en raison d'un biais de sélection pour l'analyse de nos résultats.
+
+```{r Descrption2}
+biometry %>.%
+  sselect(., genre, masse_corr, taille, activite_physique, tour_poignet, tour_taille, tour_hanche, sommeil, fast_food, fumeur, eau, alcool) %>.%
+  sgroup_by(., genre) %>.%
+  ssummarise(., 
+    "activite_physique_moyenne" = fmean(activite_physique),
+    "fast_food_moyenne" = fmean(fast_food),
+    "alcool_moyenne" = fmean(alcool),
+    "fumeur_moyenne" = fmean(fumeur)
+    ) -> tableau4
+
+tabularise(tableau4)
+```
+
+Les principales différences observées entre les hommes et les femmes sont les suivantes :
+
+Les hommes sont plus actifs physiquement et consomment d'avantage de fast-food et d'alcool.
+
+Cependant, les femmes fument plus que les hommes.
+
+```{r Description3}
+
+```
+
+```{r Description4}
+
+```
+
+```{r Description5}
+
+```
 
 ## Tests d'hypothèses
 
