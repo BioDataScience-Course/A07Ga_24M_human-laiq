@@ -31,7 +31,7 @@ SciViews::R("infer", lang = "fr")
 
 <!--# Ce projet porte sur la santé humaine liée à l'obésité, à la façon de se nourrir et aux activités réalisées (plus ou moins sédentaire ou actif) ... Réalisez des recherches bibliographiques afin d'avoir une vision précise de la thématique. Existe-t-il des indicateurs calculables pour quantifier l'état de santé d'un individu, par exemple ? Naturellement, ces indicateurs doivent être calculables sur bases des variables mesurées dans votre jeu de données. Focalisez-vous donc sur ces variables-là. -->
 
-Selon @lebacq2015 a effectué différentes études sur l'obésité en Belgique en 2014. Des valeurs de l'OMS et de de l'IOTF indique que 45% de la population belge entre 3 ans et 64 ans a un IMC trop élevé, 29% est en sur poids et 16% sont obèses. Les hommes auraient tendance à avoir un IMC plus élevé que les femmes. L'âge, de plus, aurait un impact sur l'obésité. A partir de 35 ans, un belge sur trois serait en sur poids. Selon www.louvainmedical.be, la quantité de sucres ingérée augmente le risque de prise de poids. Selon Actu-Carnet-Sommeil-Nutrition.pdf, la durée du sommeil affecte la prise de poids. La population a tendance a dormir insuffisamment, cette diminution du temps de sommeil augmente la prise du poids. D'après https://www.sciencedirect.com/science/article/pii/S1878622721000230, une activité physique régulière diminuerait la prise de poids.
+Selon @lebacq2015 a effectué différentes études sur l'obésité en Belgique en 2014. Des valeurs de l'OMS et de de l'IOTF indique que 45% de la population belge entre 3 ans et 64 ans a un IMC trop élevé, 29% est en sur poids et 16% est obèse. Les hommes auraient tendance à avoir un IMC plus élevé que les femmes. L'âge, de plus, aurait un impact sur l'obésité. A partir de 35 ans, un belge sur trois serait en sur poids. Selon www.louvainmedical.be, la quantité de sucres ingérée augmente le risque de prise de poids. Selon Actu-Carnet-Sommeil-Nutrition.pdf, la durée du sommeil affecte la prise de poids. La population a tendance a dormir insuffisamment, cette diminution du temps de sommeil augmente la prise du poids. D'après https://www.sciencedirect.com/science/article/pii/S1878622721000230, une activité physique régulière diminuerait la prise de poids.
 
 Pour diversifier notre travail, nous allons nous effectuer différents indices en plus de l'IMC. Nous allons effectuer le rapport tour de taille/taille qui lui aussi augmente avec l'âge. De plus, nous effectuerons la formule de Perrault et de Monnerot Dumaine.
 
@@ -65,15 +65,14 @@ Nous avons effectué notre analyse des données avec le logiciel R (\`r R.versio
 
 <!--% Sélectionnez les 4 tests d'hypothèses les plus pertinents depuis `human_notebook.qmd`, ainsi bien sûr que les calculs des indices nécessaires que vous placerez juste au-dessus de vos tests. Ces tests doivent répondre à votre question de recherche (le but). Reformulez les interprétations pour former un texte qui se lit en continu. -->
 
- 1) Test de chi carré d'indépendance, lien entre l'âge et l'IMC
+1)  Test de chi carré d'indépendance, lien entre l'âge et l'IMC
 
 Calcul de l'IMC : mass_corr/taille1\^2
 
--   H₀ : l\'âge et l\'IMC sont indépendants. 
+-   H₀ : l'âge et l'IMC sont indépendants. 
 
-```{=html}
 <!-- -->
-```
+
 -   H₁ : l'âge et l'IMC sont dépendants.
 
     2\) Test t Student, comparaison de l'IMC entre les hommes et les femmes
@@ -96,7 +95,7 @@ Calcul de l'IMC : mass_corr/taille1\^2
 
 -   H₁ : au moins une moyenne d'IMC diffère avec le nombre d'heures d'activité physique.
 
-    Le test du chi carré révèle une dépendance significative entre l\'âge et l\'IMC au seuil alpha de 5 %, ce qui nous conduit à rejeter l\'hypothèse d\'indépendance (H₀). Cela laisse entendre que le poids a tendance à évoluer avec l\'âge, un constat en accord avec la littérature scientifique, qui souligne fréquemment une prise de poids progressive au fil des années. En revanche, avec une valeur p de 0,37 (bien supérieure au seuil de 0,05), nous ne rejetons pas H₀ dans le cadre de la comparaison des IMC entre hommes et femmes. Autrement dit, il n\'existe pas de différence significative entre les deux genres dans notre échantillon. (Ce résultat pourrait néanmoins être influencé par la taille réduite de l\'échantillon ou par des limites méthodologiques.) Ensuite, le test effectué sur le rapport taille/tour de taille ne met pas non plus en évidence de différence significative au seuil de 5 %, ce qui suggère que le tabagisme n\'a pas d\'impact sur cette mesure dans notre population étudiée. Enfin, les résultats du test ANOVA ne montrent aucune différence significative entre les groupes définis selon le nombre d\'heures d\'activité physique par semaine. Cela indique une absence de lien clair entre niveau d\'activité physique et IMC. Ce résultat contredit les nombreuses études qui démontrent les bienfaits de l\'activité physique sur le poids, (mais cette divergence peut s\'expliquer par la petite taille de notre échantillon ainsi que par le caractère déclaratif des données recueillies.) 
+    Le test du chi carré révèle une dépendance significative entre l'âge et l'IMC au seuil alpha de 5 %, ce qui nous conduit à rejeter l'hypothèse d'indépendance (H₀). Cela laisse entendre que le poids a tendance à évoluer avec l'âge, un constat en accord avec la littérature scientifique, qui souligne fréquemment une prise de poids progressive au fil des années. En revanche, avec une valeur p de 0,37 (bien supérieure au seuil de 0,05), nous ne rejetons pas H₀ dans le cadre de la comparaison des IMC entre hommes et femmes. Autrement dit, il n'existe pas de différence significative entre les deux genres dans notre échantillon. (Ce résultat pourrait néanmoins être influencé par la taille réduite de l'échantillon ou par des limites méthodologiques.) Ensuite, le test effectué sur le rapport taille/tour de taille ne met pas non plus en évidence de différence significative au seuil de 5 %, ce qui suggère que le tabagisme n'a pas d'impact sur cette mesure dans notre population étudiée. Enfin, les résultats du test ANOVA ne montrent aucune différence significative entre les groupes définis selon le nombre d'heures d'activité physique par semaine. Cela indique une absence de lien clair entre niveau d'activité physique et IMC. Ce résultat contredit les nombreuses études qui démontrent les bienfaits de l'activité physique sur le poids, (mais cette divergence peut s'expliquer par la petite taille de notre échantillon ainsi que par le caractère déclaratif des données recueillies.) 
 
 ## Discussion et conclusions
 
