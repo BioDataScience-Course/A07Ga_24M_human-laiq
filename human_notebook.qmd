@@ -244,6 +244,11 @@ combine_charts(list(a, b), common.legend = TRUE)
 biometry %>.% 
   smutate(., imc = masse_corr / ((taille/100)^2)) ->
   biometry
+biometry <- labelise(biometry,
+   label = list(
+     imc = "IMC"),
+  units = list(
+    imc = "kg/m²"))
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
@@ -546,10 +551,6 @@ chart(data=biometry, imc ~ fast_food | genre) + geom_boxplot()
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Les moyennes (imc, fast-food, genre) sont égales entre elle.
-
-H1 : Les moyennes (imc, fast-food, genre) ne sont pas égales entre elles.
-
 <!--% Vérification des conditions d'application -->
 
 ```{r test_bartlett_anova2_1}
@@ -599,10 +600,12 @@ biometry$eau_rec <- cut(biometry$eau,
   right = FALSE,
   dig.lab = 4,
   breaks = c(0, 0.75, 1.5, 4))
+  levels(biometry$eau_rec) <- c("Moins de 0.75L", "Entre 0.75L et 1.5L", "Plus de 1.5L")
 chart(data = biometry, imc ~ eau_rec) +
   geom_boxplot() +
   geom_jitter(width = 0.05, alpha = 0.3) +
-  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3) +
+  labs(x = "Consommation d'eau [L/j]")
 ```
 
 ```{r}
@@ -618,9 +621,9 @@ chart(data=biometry, imc ~ eau_rec %col=% genre %group=% genre)+
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 :
+H0 : Les moyennes (imc, eau, genre) sont égales entre elle.
 
-H1 :
+H1 : Les moyennes (imc, eau, genre) ne sont pas égales entre elles.
 
 <!--% Vérification des conditions d'application -->
 
