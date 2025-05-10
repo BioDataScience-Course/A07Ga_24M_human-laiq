@@ -251,7 +251,7 @@ biometry %>.%
 # Graphique ou tableau utilisant l'indice calculé.
   chart(biometry, ~ imc) + 
     geom_histogram(bins = 20) +
-    labs(title ="Répartition de l'Indice de masse corporelle de notre échantillon",x = "IMC",y = "Effectifs")
+    labs(title ="Répartition de l'Indice de masse corporelle",x = "IMC",y = "Effectifs")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
@@ -294,9 +294,9 @@ tabularise(bio_tab)
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : indépendance des deux variables.
+H0 : indépendance des deux variables (âge et IMC).
 
-H1 : dépendance des deux variables.
+H1 : dépendance des deux variables (âge et IMC).
 
 <!--% Vérification des conditions d'application -->
 
@@ -330,9 +330,9 @@ table(biometry$imc_rec , biometry$sucre_rec)
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 = indépendance entre les deux variables
+H0 = indépendance entre les deux variables (IMC et consommation de sucre).
 
-H1 = dépendance entre les deux variables
+H1 = dépendance entre les deux variables (IMC et consommation de sucre).
 
 <!--% Vérification des conditions d'application -->
 
@@ -343,7 +343,7 @@ chisq.test(table(biometry$imc_rec , biometry$sucre_rec)) |>tabularise()
 
 <!--% Interprétation statistique et biologique -->
 
-Au seuil alpha = 5%, on ne rejette pas H0, p étant supérieur au seuil. Il n'y a donc pas de dépendance significative entre les variables imc et sucre c'est-à-dire entre l'IMC et la prise de sucre par semaine.
+Au seuil alpha = 5%, on ne rejette pas H0, p étant supérieur au seuil. Il n'y a donc pas de dépendance significative entre les variables IMC et sucre, c'est-à-dire entre l'IMC et la prise de sucre par semaine.
 
 Ces résultats sont assez surprenants, car on associe généralement la consommation de sucre à la prise de poids, comme le montrent J.P. Thissen et V. Maindiaux dans leur article intitulé "Les sucres : impact sur notre santé". Par conséquent, on pourrait s'attendre à un IMC plus élevé chez les personnes ayant une consommation de sucre plus importante dans leur alimentation.
 
@@ -399,9 +399,9 @@ chart(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec) +
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : moyenne rapport tour taille et taille des fumeurs- moyenne rapport tour taille et taille des non fumeurs= 0
+H0 : moyenne rapport tour de taille/taille des fumeurs- moyenne rapport tour de taille/taille des non fumeurs= 0
 
-H1 : moyenne rapport tour taille et taille des fumeurs - moyenne rapport tour taille et taille des non fumeurs!= 0
+H1 : moyenne rapport tour de taille/taille des fumeurs - moyenne rapport tour de taille/taille des non fumeurs!= 0
 
 <!--% Vérification des conditions d'application -->
 
@@ -412,7 +412,7 @@ t.test(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec,
 
 <!--% Interprétation statistique et biologique -->
 
-On ne rejette pas H0 au seuil alpha de 5% . Donc on ne peut montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille taille des fumeurs et non fumeurs.
+On ne rejette pas H0 au seuil alpha de 5% . Donc on ne peut montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille/taille des fumeurs et non fumeurs.
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
