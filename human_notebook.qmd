@@ -115,6 +115,7 @@ biometry %>.%
   sselect(., genre, masse_corr, taille, activite_physique, tour_poignet, tour_taille, tour_hanche, sommeil, fast_food, fumeur, eau, alcool) %>.%
   sgroup_by(., genre) %>.%
   ssummarise(., 
+    "Effectif" = fnobs(genre),
     "sommeil_moyenne" = fmean(sommeil),
     "activite_physique_moyenne" = fmean(activite_physique),
     "fast_food_moyenne" = fmean(fast_food),
@@ -280,8 +281,8 @@ biometry$age_rec <- cut(biometry$age,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(18, 40, 85)
-)
+  breaks = c(18, 40, 85))
+  levels(biometry$age_rec) <- c("Entre 18 et 40 ans", "Plus de 40 ans")
 biometry$imc_rec <- cut(biometry$imc,
   include.lowest = TRUE,
   right = FALSE,
@@ -483,6 +484,7 @@ biometry$activite_physique_rec <- cut(biometry$activite_physique,
   dig.lab = 4,
   breaks = c(0, 1, 120, 300, 1001)
 )
+levels(biometry$activite_physique_rec) <- c("Aucune activité physique", "Moins de 2 heures par semaine", "Entre 2 et 5 heures par semaine", "Plus de 5 heures par semaine")
 # Tableau pour anova2
 biometry %>.%
   sgroup_by(., activite_physique_rec) %>.%
