@@ -102,11 +102,6 @@ tabularise(tableau3)
 ### Description par Quentin
 
 ```{r graph4}
-# Test graphique 1 - Répartition de l'activité physique par genre
-chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs(title = "Répartition de l'activité physique par genre", y = "Effectifs")
-# Test graphique 2 - Distribution de l'activité physique selon le genre
-chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_density( data = biometry, aes(y = after_stat(count)), adjust = 0.7) + labs(title = "Distribution de l'activité physique selon le genre", y = "Densité")
-# Test graphique 3 - Répartition des âges
 chart(biometry, ~ age) +  
   geom_histogram(bins = 80) + 
   labs(title = "Répartition des âges", y = "Effectifs")
@@ -118,21 +113,14 @@ biometry %>.%
   sselect(., genre, masse_corr, taille, activite_physique, tour_poignet, tour_taille, tour_hanche, sommeil, fast_food, fumeur, eau, alcool) %>.%
   sgroup_by(., genre) %>.%
   ssummarise(., 
-    "masse_moyenne" = fmean(masse_corr), 
-    "taille_moyenne" = fmean(taille),
-    "tour_poignet_moyenne" = fmean(tour_poignet),
-    "tour_taille_moyenne" = fmean(tour_taille),
-    "tour_hanche_moyenne" = fmean(tour_hanche),
     "sommeil_moyenne" = fmean(sommeil),
     "activite_physique_moyenne" = fmean(activite_physique),
-    "eau_moyenne" = fmean(eau),
     "fast_food_moyenne" = fmean(fast_food),
-    "alcool_moyenne" = fmean(alcool), #interessant
-    "fumeur_moyenne" = fmean(fumeur) #interessant
+    "alcool_moyenne" = fmean(alcool),
+    "fumeur_moyenne" = fmean(fumeur)
     ) -> tableau4
 
 tabularise(tableau4)
-# J'ai mis beaucoup de trucs pour mettre en évidence mais on peut choisir ce qui est interessant à garder
 ```
 
 ## Calcul d'indices
