@@ -609,14 +609,18 @@ chart(data = biometry, imc ~ eau_rec) +
 ```
 
 ```{r}
-chart(data=biometry, imc ~ eau_rec %col=% genre %group=% genre)+
+biometry %>.%
+  sgroup_by(., eau_rec, genre) %>.%
+  ssummarise(., imc_groups = mean(imc)) %>.%
+  print(.) %>.%
+chart(., imc_groups ~ eau_rec %col=% genre %group=% genre)+
   geom_point() +
   geom_line()
   
 ```
 
 ```{r}
-
+chart$qqplot(biometry_anova2)
 ```
 
 <!--% Hypothèse nulle et alternative -->
