@@ -102,14 +102,11 @@ tabularise(tableau3)
 ### Description par Quentin
 
 ```{r graph4}
-# Test graphique 1 - Répartition de l'activité physique par genre
-chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_histogram(bins = 15) + labs(title = "Répartition de l'activité physique par genre", y = "Effectifs")
-# Test graphique 2 - Distribution de l'activité physique selon le genre
-chart(biometry, ~ activite_physique %fill=% genre | genre) + geom_density( data = biometry, aes(y = after_stat(count)), adjust = 0.7) + labs(title = "Distribution de l'activité physique selon le genre", y = "Densité")
-# Test graphique 3 - Répartition des âges
 chart(biometry, ~ age) +  
   geom_histogram(bins = 80) + 
-  labs(title = "Répartition des âges", y = "Effectifs")
+  labs(title = "Répartition des âges", y = "Effectifs") +
+  annotate("text", x = Inf, y = Inf, label = paste("Effectif total :", nrow(biometry)), color = "red",
+           hjust = 1.2, vjust = 2, size = 5)
 # Note : F : 79 H : 65
 ```
 
@@ -118,21 +115,15 @@ biometry %>.%
   sselect(., genre, masse_corr, taille, activite_physique, tour_poignet, tour_taille, tour_hanche, sommeil, fast_food, fumeur, eau, alcool) %>.%
   sgroup_by(., genre) %>.%
   ssummarise(., 
-    "masse_moyenne" = fmean(masse_corr), 
-    "taille_moyenne" = fmean(taille),
-    "tour_poignet_moyenne" = fmean(tour_poignet),
-    "tour_taille_moyenne" = fmean(tour_taille),
-    "tour_hanche_moyenne" = fmean(tour_hanche),
+    "Effectif" = fnobs(genre),
     "sommeil_moyenne" = fmean(sommeil),
     "activite_physique_moyenne" = fmean(activite_physique),
-    "eau_moyenne" = fmean(eau),
     "fast_food_moyenne" = fmean(fast_food),
-    "alcool_moyenne" = fmean(alcool), #interessant
-    "fumeur_moyenne" = fmean(fumeur) #interessant
+    "alcool_moyenne" = fmean(alcool),
+    "fumeur_moyenne" = fmean(fumeur)
     ) -> tableau4
 
 tabularise(tableau4)
-# J'ai mis beaucoup de trucs pour mettre en évidence mais on peut choisir ce qui est interessant à garder
 ```
 
 ## Calcul d'indices
@@ -253,6 +244,11 @@ combine_charts(list(a, b), common.legend = TRUE)
 biometry %>.% 
   smutate(., imc = masse_corr / ((taille/100)^2)) ->
   biometry
+biometry <- labelise(biometry,
+   label = list(
+     imc = "IMC"),
+  units = list(
+    imc = "kg/m²"))
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
@@ -261,7 +257,7 @@ biometry %>.%
 # Graphique ou tableau utilisant l'indice calculé.
   chart(biometry, ~ imc) + 
     geom_histogram(bins = 20) +
-    labs(title ="Répartition de l'Indice de masse corporelle de notre échantillon",x = "IMC",y = "Effectifs")
+    labs(title ="Répartition de l'Indice de masse corporelle",x = "IMC",y = "Effectifs")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
@@ -290,8 +286,8 @@ biometry$age_rec <- cut(biometry$age,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(18, 40, 85)
-)
+  breaks = c(18, 40, 85))
+  levels(biometry$age_rec) <- c("Entre 18 et 40 ans", "Plus de 40 ans")
 biometry$imc_rec <- cut(biometry$imc,
   include.lowest = TRUE,
   right = FALSE,
@@ -304,9 +300,9 @@ tabularise(bio_tab)
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : indépendance des deux variables.
+H0 : indépendance des deux variables (âge et IMC).
 
-H1 : dépendance des deux variables.
+H1 : dépendance des deux variables (âge et IMC).
 
 <!--% Vérification des conditions d'application -->
 
@@ -340,9 +336,9 @@ table(biometry$imc_rec , biometry$sucre_rec)
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 = indépendance entre les deux variables
+H0 = indépendance entre les deux variables (IMC et consommation de sucre).
 
-H1 = dépendance entre les deux variables
+H1 = dépendance entre les deux variables (IMC et consommation de sucre).
 
 <!--% Vérification des conditions d'application -->
 
@@ -353,7 +349,7 @@ chisq.test(table(biometry$imc_rec , biometry$sucre_rec)) |>tabularise()
 
 <!--% Interprétation statistique et biologique -->
 
-Au seuil alpha = 5%, on ne rejette pas H0, p étant supérieur au seuil. Il n'y a donc pas de dépendance significative entre les variables imc et sucre c'est-à-dire entre l'IMC et la prise de sucre par semaine.
+Au seuil alpha = 5%, on ne rejette pas H0, p étant supérieur au seuil. Il n'y a donc pas de dépendance significative entre les variables IMC et sucre, c'est-à-dire entre l'IMC et la prise de sucre par semaine.
 
 Ces résultats sont assez surprenants, car on associe généralement la consommation de sucre à la prise de poids, comme le montrent J.P. Thissen et V. Maindiaux dans leur article intitulé "Les sucres : impact sur notre santé". Par conséquent, on pourrait s'attendre à un IMC plus élevé chez les personnes ayant une consommation de sucre plus importante dans leur alimentation.
 
@@ -409,9 +405,9 @@ chart(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec) +
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : moyenne rapport tour taille et taille des fumeurs- moyenne rapport tour taille et taille des non fumeurs= 0
+H0 : moyenne rapport tour de taille/taille des fumeurs- moyenne rapport tour de taille/taille des non fumeurs= 0
 
-H1 : moyenne rapport tour taille et taille des fumeurs - moyenne rapport tour taille et taille des non fumeurs!= 0
+H1 : moyenne rapport tour de taille/taille des fumeurs - moyenne rapport tour de taille/taille des non fumeurs!= 0
 
 <!--% Vérification des conditions d'application -->
 
@@ -422,9 +418,7 @@ t.test(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec,
 
 <!--% Interprétation statistique et biologique -->
 
-On ne rejette pas H0 au seuil alpha de 5%. Donc on ne peut montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille taille des fumeurs et non fumeurs.
-
-Ces résultats sont en accords avec
+On ne rejette pas H0 au seuil alpha de 5% . Donc on ne peut montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille/taille des fumeurs et non fumeurs.
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
@@ -495,6 +489,7 @@ biometry$activite_physique_rec <- cut(biometry$activite_physique,
   dig.lab = 4,
   breaks = c(0, 1, 120, 300, 1001)
 )
+levels(biometry$activite_physique_rec) <- c("Aucune activité physique", "Moins de 2 heures par semaine", "Entre 2 et 5 heures par semaine", "Plus de 5 heures par semaine")
 # Tableau pour anova2
 biometry %>.%
   sgroup_by(., activite_physique_rec) %>.%
@@ -556,10 +551,6 @@ chart(data=biometry, imc ~ fast_food | genre) + geom_boxplot()
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Les moyennes (imc, fast-food, genre) sont égales entre elle.
-
-H1 : Les moyennes (imc, fast-food, genre) ne sont pas égales entre elles.
-
 <!--% Vérification des conditions d'application -->
 
 ```{r test_bartlett_anova2_1}
@@ -609,10 +600,12 @@ biometry$eau_rec <- cut(biometry$eau,
   right = FALSE,
   dig.lab = 4,
   breaks = c(0, 0.75, 1.5, 4))
+  levels(biometry$eau_rec) <- c("Moins de 0.75L", "Entre 0.75L et 1.5L", "Plus de 1.5L")
 chart(data = biometry, imc ~ eau_rec) +
   geom_boxplot() +
   geom_jitter(width = 0.05, alpha = 0.3) +
-  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3) +
+  labs(x = "Consommation d'eau [L/j]")
 ```
 
 ```{r}
@@ -628,9 +621,9 @@ chart(data=biometry, imc ~ eau_rec %col=% genre %group=% genre)+
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 :
+H0 : Les moyennes (imc, eau, genre) sont égales entre elle.
 
-H1 :
+H1 : Les moyennes (imc, eau, genre) ne sont pas égales entre elles.
 
 <!--% Vérification des conditions d'application -->
 
