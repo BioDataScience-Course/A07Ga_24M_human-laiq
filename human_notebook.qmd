@@ -418,7 +418,7 @@ t.test(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec,
 
 <!--% Interprétation statistique et biologique -->
 
-On ne rejette pas H0 au seuil alpha de 5% . Donc on ne peut montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille/taille des fumeurs et non fumeurs.
+On ne rejette pas H0 au seuil alpha de 5% . Donc on ne peut pas montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille/taille des fumeurs et non fumeurs. Nos résultats sont en désaccord avec l'article de la revue ELSEVIER "The effects of smoking a-on obesity : Evidences of a randomized trial". (L'article est basé sur la Lung Health Study).
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
@@ -475,7 +475,7 @@ Il n'y a pas différence des moyennes. Ce qui signifie que l'hypothèse nulle n'
 
 On ne peut pas montrer de manière significative le lien entre le temps de sommeil et l' IMC au seuil alpha de 5%.
 
-Nos résultats ne sont pas en raccord avec l'article Sommeil et nutrition de l'Institut National du Sommeil et de la Vigilance (lui même basé sur l'article "Effects of poor and short sleep on glucose metabolism and obesity risk" réalisé par Spiegel K, Tasali E, Leproult R , Van Couter E.
+Nos résultats ne sont pas en raccord avec l'article Sommeil et nutrition de l'Institut National du Sommeil et de la Vigilance (lui même basé sur l'article "Effects of poor and short sleep on glucose metabolism and obesity risk" réalisé par Spiegel K, Tasali E, Leproult R , Van Couter E).
 
 ### ANOVA à un facteur 2
 
