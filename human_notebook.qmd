@@ -573,14 +573,14 @@ chart(., imc_groups ~ fast_food_rec %col=% genre %group=% genre) +
     geom_point(na.rm=TRUE)
 ```
 
+```{r testnormalité_anova2_1}
+chart$qqplot(biometry_anova2comp)
+```
+
 ```{r test_anova2_1}
 biometry_anova2comp <- lm(data = biometry, imc ~ fast_food_rec * genre)
 anova(biometry_anova2comp) %>.%
 tabularise(.)
-```
-
-```{r testnormalité_anova2_1}
-chart$qqplot(biometry_anova2comp)
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -608,15 +608,7 @@ chart(data = biometry, imc ~ eau_rec) +
   labs(x = "Consommation d'eau [L/j]")
 ```
 
-<!--% Hypothèse nulle et alternative -->
-
-H0 : Les moyennes (imc, eau, genre) sont égales entre elle.
-
-H1 : Les moyennes (imc, eau, genre) ne sont pas égales entre elles.
-
-<!--% Vérification des conditions d'application -->
-
-```{r testinteraction_anova2_2}
+```{r}
 biometry %>.%
   sgroup_by(., eau_rec, genre) %>.%
   ssummarise(., imc_groups = mean(imc)) %>.%
@@ -624,19 +616,28 @@ biometry %>.%
 chart(., imc_groups ~ eau_rec %col=% genre %group=% genre)+
   geom_point() +
   geom_line()
+  
 ```
 
-```{r testbartlett_anova2_2}
+```{r}
+chart$qqplot(biometry_anova2)
+```
+
+H0 : Les moyennes (imc, eau, genre) sont égales entre elle.
+
+<!--% Hypothèse nulle et alternative -->
+
+H1 : Les moyennes (imc, eau, genre) ne sont pas égales entre elles.
+
+<!--% Vérification des conditions d'application -->
+
+```{r}
 bartlett.test(data=biometry, imc ~ interaction(genre, eau_rec))
 ```
 
-```{r testanova2_2}
+```{r}
 anova2 <- lm(data=biometry, imc ~ eau_rec * genre)
 anova(anova2) |> tabularise(.)
-```
-
-```{r testnormalité_anova2_2}
-chart$qqplot(biometry_anova2)
 ```
 
 <!--% Interprétation statistique et biologique -->
