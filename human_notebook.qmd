@@ -573,14 +573,14 @@ chart(., imc_groups ~ fast_food_rec %col=% genre %group=% genre) +
     geom_point(na.rm=TRUE)
 ```
 
-```{r testnormalité_anova2_1}
-chart$qqplot(biometry_anova2comp)
-```
-
 ```{r test_anova2_1}
 biometry_anova2comp <- lm(data = biometry, imc ~ fast_food_rec * genre)
 anova(biometry_anova2comp) %>.%
 tabularise(.)
+```
+
+```{r testnormalité_anova2_1}
+chart$qqplot(biometry_anova2comp)
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -619,10 +619,6 @@ chart(., imc_groups ~ eau_rec %col=% genre %group=% genre)+
   
 ```
 
-```{r}
-chart$qqplot(biometry_anova2)
-```
-
 H0 : Les moyennes (imc, eau, genre) sont égales entre elle.
 
 <!--% Hypothèse nulle et alternative -->
@@ -638,6 +634,10 @@ bartlett.test(data=biometry, imc ~ interaction(genre, eau_rec))
 ```{r}
 anova2 <- lm(data=biometry, imc ~ eau_rec * genre)
 anova(anova2) |> tabularise(.)
+```
+
+```{r}
+chart$qqplot(biometry_anova2)
 ```
 
 <!--% Interprétation statistique et biologique -->
