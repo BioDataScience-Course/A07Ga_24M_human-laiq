@@ -330,7 +330,7 @@ source : https://www.sciensano.be/fr/biblio/enquete-de-consommation-alimentaire-
 
 ```
 
-```{r}
+```{r table}
 
 table(biometry$imc_rec , biometry$sucre_rec)
 ```
@@ -559,6 +559,10 @@ chart(data=biometry, imc ~ fast_food | genre) + geom_boxplot()
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 : les variables genre et fast_food et imc sont les mêmes.
+
+H1 : les variables genre et fast-food et imc ne sont pas les mêmes.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_bartlett_anova2_1}
@@ -581,19 +585,20 @@ chart(., imc_groups ~ fast_food_rec %col=% genre %group=% genre) +
     geom_point(na.rm=TRUE)
 ```
 
-```{r testnormalité_anova2_1}
-chart$qqplot(biometry_anova2comp)
-```
-
 ```{r test_anova2_1}
 biometry_anova2comp <- lm(data = biometry, imc ~ fast_food_rec * genre)
 anova(biometry_anova2comp) %>.%
 tabularise(.)
 ```
 
+```{r testnormalité_anova2_1}
+chart$qqplot(biometry_anova2comp)
+```
+
 <!--% Interprétation statistique et biologique -->
 
 Notre test d'interaction, nous donnait un résultat difficile à analyser. Nous avons donc décider de faire un test avec interactions pour vérifier si les variables étaient ou non en interaction. Il n'y a pas d'interaction entre le genre et le fast-food. Avec les résultats de notre test anova, nous pouvons conclure qu'il n'y a pas d'interaction entre la variable genre et la variable fast_food_rec. Ce qui signifie biologiquement parlant que le nombre de fastfood par mois n'est pas corrélé avec le genre.
+
 
 Les résultats de notre test, ne nous permettent pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre ou de la consommation de fast-food sur l'imc au seuil de 5%. Cela peut nous étonner car d'après un article du docteur Gabrielle de Torrenté de la Jara basé sur des études statistiques, l'effet de la consommation de fast-food sur la prise de poids est significative (Consommation dans les fast-foods : prise de poids et résistance à l'insuline... une forte association positive). Nos résultats divergents de la littérature scientifique peuvent être expliqué par le faible nombre d'individus dans notre étude et l’échantillonnage peu correct.
 source : https://www.revmed.ch/revue-medicale-suisse/2005/revue-medicale-suisse-12/consommation-dans-les-fast-foods-prise-de-poids-et-resistance-a-l-insuline-une-forte-association-positive
@@ -628,10 +633,6 @@ chart(., imc_groups ~ eau_rec %col=% genre %group=% genre)+
   
 ```
 
-```{r}
-chart$qqplot(biometry_anova2)
-```
-
 H0 : Les moyennes (imc, eau, genre) sont égales entre elle.
 
 <!--% Hypothèse nulle et alternative -->
@@ -649,6 +650,10 @@ anova2 <- lm(data=biometry, imc ~ eau_rec * genre)
 anova(anova2) |> tabularise(.)
 ```
 
+```{r}
+chart$qqplot(biometry_anova2)
+```
+
 <!--% Interprétation statistique et biologique -->
 
 Nous avons réalisé un test d'interaction qui nous donnait des résultats difficile à analyser de façon catégorique. Dans le doute, nous avons décidé de faire un test avec interaction. Notre test anova nous montre que finalement il n'y a pas d'interaction entre les variables genre et eau_rec. Cela signifie que la quantité d'eau bue par jour n'est pas en lien avec le genre des individus.
@@ -660,18 +665,13 @@ source : https://www.topsante.com/nutrition-et-recettes/les-bons-aliments/eau/un
 
 <!--% Reprenez ci-dessous sous forme d'éléments de listes brefs les résultats les plus importants que vous retirez de votre analyse. Ils doivent vous guider pour décider quels tests (les plus intéressants) vous allez conserver dans le rapport. -->
 
--   Test de chi carré d'indépendance, lien entre l'âge et l'IMC
-Nous observons que la masse augmente en fonction de l'âge. Ceci est cohérent et en accord avec la littérature scientifique.
+-   Test de chi carré d'indépendance, lien entre l'âge et l'IMC Nous observons que la masse augmente en fonction de l'âge. Ceci est cohérent et en accord avec la littérature scientifique.
 
--   Test t Student, comparaison de l'IMC entre les hommes et les femmes
-Nous n'observons pas de différence significative d'ICM entre les deux genres. Il est très important de noter que, compte tenu la faible taille de notre échantillon et de l'échantillonnage non aléatoire, cette analyse ne peut pas être considéré comme fiable.
+-   Test t Student, comparaison de l'IMC entre les hommes et les femmes Nous n'observons pas de différence significative d'ICM entre les deux genres. Il est très important de noter que, compte tenu la faible taille de notre échantillon et de l'échantillonnage non aléatoire, cette analyse ne peut pas être considéré comme fiable.
 
--   Test t pour les moyennes indépendantes, effet du tabagisme sur la répartition de la graisse abdominale
-Nous n'avons pas pu démontré que le tabac impacte de manière significative l'IMC. En effet, la nicotine à la fois supprime et stimule l'appétit.
+-   Test t pour les moyennes indépendantes, effet du tabagisme sur la répartition de la graisse abdominale Nous n'avons pas pu démontré que le tabac impacte de manière significative l'IMC. En effet, la nicotine à la fois supprime et stimule l'appétit.
 
--   ANOVA à un facteur, lien entre activité physique et IMC
-Ce test ne révèle aucune différence significative entre l'IMC et le nombre d'heures d'activité physique. Il n'y aurait donc pas de lien entre l'activité physique et l'obésité. Ce résultat contredit de nombreuses études scientifiques.
-
+-   ANOVA à un facteur, lien entre activité physique et IMC Ce test ne révèle aucune différence significative entre l'IMC et le nombre d'heures d'activité physique. Il n'y aurait donc pas de lien entre l'activité physique et l'obésité. Ce résultat contredit de nombreuses études scientifiques.
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
