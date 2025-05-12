@@ -585,7 +585,7 @@ tabularise(.)
 
 <!--% Interprétation statistique et biologique -->
 
-Notre test de Bartlett, nous donnait un résultat difficile à analyser. Nous avons donc décider de faire un test avec interactions pour vérifier si les variables étaient ou non en interaction. Il n'y a pas d'interaction entre le genre et le fast-food. Avec les résultats de notre test anova, nous pouvons conclure qu'il n'y a pas d'interaction entre la variable genre et la variable fast_food_rec. Ce qui signifie biologiquement parlant que le nombre de fastfood par mois n'est pas corrélé avec le genre.
+Notre test d'interaction, nous donnait un résultat difficile à analyser. Nous avons donc décider de faire un test avec interactions pour vérifier si les variables étaient ou non en interaction. Il n'y a pas d'interaction entre le genre et le fast-food. Avec les résultats de notre test anova, nous pouvons conclure qu'il n'y a pas d'interaction entre la variable genre et la variable fast_food_rec. Ce qui signifie biologiquement parlant que le nombre de fastfood par mois n'est pas corrélé avec le genre.
 
 Les résultats de notre test, ne nous permettent pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre ou de la consommation de fast-food sur l'imc au seuil de 5%. Cela peut nous étonner car d'après un article du docteur Gabrielle de Torrenté de la Jara basé sur des études statistiques, l'effet de la consommation de fast-food sur la prise de poids est significative (Consommation dans les fast-foods : prise de poids et résistance à l'insuline... une forte association positive). Nos résultats divergents de la littérature scientifique peuvent être expliqué par le faible nombre d'individus dans notre étude et l'échantillonage peu correct.
 
@@ -641,6 +641,10 @@ anova(anova2) |> tabularise(.)
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Nous avons réalisé un test d'interaction qui nous donnait des résultats difficile à analyser de façon catégorique. Dans le doute, nous avons décidé de faire un test avec interaction. Notre test anova nous montre que finalement il n'y a pas d'interaction entre les variables genre et eau_rec. Cela signifie que la quantité d'eau bue par jour n'est pas en lien avec le genre des individus.
+
+Notre test anova ne nous permet pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre et de l'eau bue sur l'IMC au seuil de 5%. Ce test n'est pas surprenant par rapport au données lues sur Internet. En effet, la quantité d'eau nécessaire pour être en bonne santé est différente selon les individus. (L'article vient d'un site Top santé qui est basé sur une déclaration d'une scientifique agrée par les USA, Un urologue a tranché : voici la quantité parfaite de liquide à boire par jour - Top Santé). En effet, la corpulence a un impact sur notre besoin en eau. Il est donc difficile de déterminer l'impact de la quantité d'eau ingérée sur l'IMC.
 
 # Discussion et conclusions
 
