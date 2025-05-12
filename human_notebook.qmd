@@ -329,7 +329,7 @@ Ceci confirme les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE
 
 ```
 
-```{r}
+```{r table}
 
 table(biometry$imc_rec , biometry$sucre_rec)
 ```
@@ -550,6 +550,10 @@ chart(data=biometry, imc ~ fast_food | genre) + geom_boxplot()
 ```
 
 <!--% Hypothèse nulle et alternative -->
+
+H0 : les variables genre et fast_food et imc sont les mêmes.
+
+H1 : les variables genre et fast-food et imc ne sont pas les mêmes.
 
 <!--% Vérification des conditions d'application -->
 
