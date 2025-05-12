@@ -65,15 +65,12 @@ Nous avons effectué notre analyse des données avec le logiciel R (\`r R.versio
 
 <!--% Sélectionnez les 4 tests d'hypothèses les plus pertinents depuis `human_notebook.qmd`, ainsi bien sûr que les calculs des indices nécessaires que vous placerez juste au-dessus de vos tests. Ces tests doivent répondre à votre question de recherche (le but). Reformulez les interprétations pour former un texte qui se lit en continu. -->
 
- 1) Test de chi carré d'indépendance, lien entre l'âge et l'IMC
+1)  Test de chi carré d'indépendance, lien entre l'âge et l'IMC
 
 Calcul de l'IMC : mass_corr/taille1\^2
 
--   H₀ : l\'âge et l\'IMC sont indépendants. 
+-   H₀ : l'âge et l'IMC sont indépendants. 
 
-```{=html}
-<!-- -->
-```
 -   H₁ : l'âge et l'IMC sont dépendants.
 
     2\) Test t Student, comparaison de l'IMC entre les hommes et les femmes
@@ -96,7 +93,7 @@ Calcul de l'IMC : mass_corr/taille1\^2
 
 -   H₁ : au moins une moyenne d'IMC diffère avec le nombre d'heures d'activité physique.
 
-    Le test du chi carré révèle une dépendance significative entre l\'âge et l\'IMC au seuil alpha de 5 %, ce qui nous conduit à rejeter l\'hypothèse d\'indépendance (H₀). Cela laisse entendre que le poids a tendance à évoluer avec l\'âge, un constat en accord avec la littérature scientifique, qui souligne fréquemment une prise de poids progressive au fil des années. En revanche, avec une valeur p de 0,37 (bien supérieure au seuil de 0,05), nous ne rejetons pas H₀ dans le cadre de la comparaison des IMC entre hommes et femmes. Autrement dit, il n\'existe pas de différence significative entre les deux genres dans notre échantillon. (Ce résultat pourrait néanmoins être influencé par la taille réduite de l\'échantillon ou par des limites méthodologiques.) Ensuite, le test effectué sur le rapport taille/tour de taille ne met pas non plus en évidence de différence significative au seuil de 5 %, ce qui suggère que le tabagisme n\'a pas d\'impact sur cette mesure dans notre population étudiée. Enfin, les résultats du test ANOVA ne montrent aucune différence significative entre les groupes définis selon le nombre d\'heures d\'activité physique par semaine. Cela indique une absence de lien clair entre niveau d\'activité physique et IMC. Ce résultat contredit les nombreuses études qui démontrent les bienfaits de l\'activité physique sur le poids, (mais cette divergence peut s\'expliquer par la petite taille de notre échantillon ainsi que par le caractère déclaratif des données recueillies.) 
+    Le test du chi carré révèle une dépendance significative entre l'âge et l'IMC au seuil alpha de 5 %, ce qui nous conduit à rejeter l'hypothèse d'indépendance (H₀). Cela laisse entendre que le poids a tendance à évoluer avec l'âge, un constat en accord avec la littérature scientifique, qui souligne fréquemment une prise de poids progressive au fil des années. En revanche, avec une valeur p de 0,37 (bien supérieure au seuil de 0,05), nous ne rejetons pas H₀ dans le cadre de la comparaison des IMC entre hommes et femmes. Autrement dit, il n'existe pas de différence significative entre les deux genres dans notre échantillon. (Ce résultat pourrait néanmoins être influencé par la taille réduite de l'échantillon ou par des limites méthodologiques.) Ensuite, le test effectué sur le rapport taille/tour de taille ne met pas non plus en évidence de différence significative au seuil de 5 %, ce qui suggère que le tabagisme n'a pas d'impact sur cette mesure dans notre population étudiée. Enfin, les résultats du test ANOVA ne montrent aucune différence significative entre les groupes définis selon le nombre d'heures d'activité physique par semaine. Cela indique une absence de lien clair entre niveau d'activité physique et IMC. Ce résultat contredit les nombreuses études qui démontrent les bienfaits de l'activité physique sur le poids, (mais cette divergence peut s'expliquer par la petite taille de notre échantillon ainsi que par le caractère déclaratif des données recueillies.) 
 
 ## Discussion et conclusions
 
