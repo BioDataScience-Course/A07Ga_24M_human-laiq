@@ -106,9 +106,6 @@ L'IMC présente des limites en tant qu'indicateur de santé. Comme il ne disting
 Calcul de l'IMC : mass_corr/taille1\^2
 
 -   H₀ : l'âge et l'IMC sont indépendants. 
-
-<!-- -->
-
 -   H₁ : l'âge et l'IMC sont dépendants.
 
     2\) Test t Student, comparaison de l'IMC entre les hommes et les femmes
