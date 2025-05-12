@@ -523,12 +523,12 @@ bartlett.test(data = biometry, imc ~ activite_physique_rec)
 anova(biometry_anova2 <- lm(data = biometry, imc ~ activite_physique_rec)) 
 ```
 
-```{r test_anova1_2_qqplot}
-chart$qqplot(biometry_anova2, lang = "fr")
-```
-
 ```{r test_anova1_2_Kruskal}
 kruskal.test(data = biometry, imc ~ activite_physique_rec)
+```
+
+```{rr test_anova1_2_qqplot}
+chart$qqplot(biometry_anova2, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->
