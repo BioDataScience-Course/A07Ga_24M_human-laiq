@@ -81,11 +81,15 @@ Nous avons montré via un test Chi² qu'il y a bel et bien une augmentation sign
 
 Ceci était attendu, car cela rejoint les résultats de Thérésa Lebacq, qui indiquait que l'IMC moyen augmente en fonction de l'âge.
 
+source : https://www.sciensano.be/fr/biblio/enquete-de-consommation-alimentaire-2014-2015-resume-rapport-1-habitudes-alimentaires-anthropometrie
+
 -   **Indépendance entre l'IMC et la consommation de sucre (Test Chi² 2)**
 
 Le test Chi² a révélé que la consommation de sucre n'a pas d'impact significatif sur le poids.
 
 Ceci est assez surprenant car on associe généralement une consommation de sucre élevée à un IMC plus important.
+
+source : https://www.louvainmedical.be/fr/article/les-sucres-impact-sur-notre-sante-metabolique
 
 -   **Pas d'impact de l'activité physique sur l'IMC (Anova à un facteur 2)**
 
@@ -96,6 +100,8 @@ Les variances entre les groupes sont faibles par rapport aux variances au sein d
 Les conditions d'application confirment notre ANOVA et le test non-paramétrique aboutit aux mêmes conclusions.
 
 L'IMC présente des limites en tant qu'indicateur de santé. Comme il ne distingue pas la masse musculaire de la masse grasse, les sportifs pourraient bénéficier d'une évaluation différente de l'IMC.
+
+source : https://hal.science/hal-02360915/document#:\~:text=L'activit%C3%A9%20physique%20permet%20d,am%C3%A9liorant%20la%20fonction%20endoth%C3%A9liale%20vasodilatatrice.
 
 ## Tests d'hypothèses
 

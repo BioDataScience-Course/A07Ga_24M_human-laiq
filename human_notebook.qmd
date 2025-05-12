@@ -316,8 +316,7 @@ La valeur *p* de 4.117e-05 est inférieure au seuil α choisi de 0,05. Donc, nou
 
 On peut dire qu'il y a une augmentation significative de l'IMC en fonction de l'âge.
 
-Ceci confirme les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : " l'IMC moyen augmente, par ailleurs, en fonction de l'âge".
-source : https://www.sciensano.be/fr/biblio/enquete-de-consommation-alimentaire-2014-2015-resume-rapport-1-habitudes-alimentaires-anthropometrie
+Ceci confirme les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : " l'IMC moyen augmente, par ailleurs, en fonction de l'âge". source : https://www.sciensano.be/fr/biblio/enquete-de-consommation-alimentaire-2014-2015-resume-rapport-1-habitudes-alimentaires-anthropometrie
 
 ### Test de Chi^2^ 2
 
@@ -352,8 +351,7 @@ chisq.test(table(biometry$imc_rec , biometry$sucre_rec)) |>tabularise()
 
 Au seuil alpha = 5%, on ne rejette pas H0, p étant supérieur au seuil. Il n'y a donc pas de dépendance significative entre les variables IMC et sucre, c'est-à-dire entre l'IMC et la prise de sucre par semaine.
 
-Ces résultats sont assez surprenants, car on associe généralement la consommation de sucre à la prise de poids, comme le montrent J.P. Thissen et V. Maindiaux dans leur article intitulé "Les sucres : impact sur notre santé". Par conséquent, on pourrait s'attendre à un IMC plus élevé chez les personnes ayant une consommation de sucre plus importante dans leur alimentation.
-source : https://www.louvainmedical.be/fr/article/les-sucres-impact-sur-notre-sante-metabolique
+Ces résultats sont assez surprenants, car on associe généralement la consommation de sucre à la prise de poids, comme le montrent J.P. Thissen et V. Maindiaux dans leur article intitulé "Les sucres : impact sur notre santé". Par conséquent, on pourrait s'attendre à un IMC plus élevé chez les personnes ayant une consommation de sucre plus importante dans leur alimentation. source : https://www.louvainmedical.be/fr/article/les-sucres-impact-sur-notre-sante-metabolique
 
 <!--% Travaillez jusqu'ici pour le module 7. -->
 
@@ -384,8 +382,7 @@ La valeur *p* de 0.37 est supérieur au seuil α choisi de 0,05. Donc, nous ne r
 
 On ne peut pas dire que, pour notre échantillon, les hommes ont significativement un IMC plus élevé que les femmes.
 
-Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : "Les hommes possèdent un IMC moyen supérieur aux femmes".
-source : https://www.sciensano.be/fr/biblio/enquete-de-consommation-alimentaire-2014-2015-resume-rapport-1-habitudes-alimentaires-anthropometrie
+Ceci contredit les résultats de Thérésa LEBACQ - ANTHROPOMÉTRIE (IMC, TOUR DE TAILLE ET RATIO TOUR DE TAILLE/TAILLE), qui indiquait : "Les hommes possèdent un IMC moyen supérieur aux femmes". source : https://www.sciensano.be/fr/biblio/enquete-de-consommation-alimentaire-2014-2015-resume-rapport-1-habitudes-alimentaires-anthropometrie
 
 ### Test t de Student 2
 
@@ -421,8 +418,7 @@ t.test(data = biometry33D, rapport_tour_taille_taille ~ fumeur_rec,
 
 <!--% Interprétation statistique et biologique -->
 
-On ne rejette pas H0 au seuil alpha de 5% . Donc on ne peut pas montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille/taille des fumeurs et non fumeurs. Nos résultats sont partiellement en accord avec l'article de la revue ELSEVIER "The effects of smoking a-on obesity : Evidences of a randomized trial". (L'article est basé sur la Lung Health Study) bien que les résultats soient complexes à analyser étant donné le fait que nos données se basent sur des effets variables selon les individus (la nicotine stimule et coupe l'appétit).
-source : https://www.sciencedirect.com/science/article/pii/S0167629617301030
+On ne rejette pas H0 au seuil alpha de 5% . Donc on ne peut pas montrer de manière significative qu'il y ait un rapport entre les moyennes des rapports tour de taille/taille des fumeurs et non fumeurs. Nos résultats sont partiellement en accord avec l'article de la revue ELSEVIER "The effects of smoking a-on obesity : Evidences of a randomized trial". (L'article est basé sur la Lung Health Study) bien que les résultats soient complexes à analyser étant donné le fait que nos données se basent sur des effets variables selon les individus (la nicotine stimule et coupe l'appétit). source : https://www.sciencedirect.com/science/article/pii/S0167629617301030
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
@@ -479,10 +475,7 @@ Il n'y a pas différence des moyennes. Ce qui signifie que l'hypothèse nulle n'
 
 On ne peut pas montrer de manière significative le lien entre le temps de sommeil et l' IMC au seuil alpha de 5%.
 
-Nos résultats ne sont pas en raccord avec l'article Sommeil et nutrition de l'Institut National du Sommeil et de la Vigilance (lui même basé sur l'article "Effects of poor and short sleep on glucose metabolism and obesity risk" réalisé par Spiegel K, Tasali E, Leproult R , Van Couter E).
-source : https://institut-sommeil-vigilance.org/wp-content/uploads/2018/12/Actu-Carnet-Sommeil-Nutrition.pdf
-https://pubmed.ncbi.nlm.nih.gov/19444258/
-
+Nos résultats ne sont pas en raccord avec l'article Sommeil et nutrition de l'Institut National du Sommeil et de la Vigilance (lui même basé sur l'article "Effects of poor and short sleep on glucose metabolism and obesity risk" réalisé par Spiegel K, Tasali E, Leproult R , Van Couter E). source : https://institut-sommeil-vigilance.org/wp-content/uploads/2018/12/Actu-Carnet-Sommeil-Nutrition.pdf https://pubmed.ncbi.nlm.nih.gov/19444258/
 
 ### ANOVA à un facteur 2
 
@@ -544,8 +537,7 @@ Le test ANOVA donne une p-value supérieure à 5%, ce qui signifie que l'activit
 
 Les tests de vérification des conditions d'application (Bartlett, quantile-quantile et Kruskal-Wallis) confirment la validité de l'ANOVA, montrant que les variables respectent l'homoscédasticité et la normalité. Le test non-paramétrique aboutit aux mêmes conclusions que le test paramétrique.
 
-Ces résultats sont surprenants, car on pourrait s'attendre à ce que l'IMC soit influencé par l'activité physique. En effet, l'IMC est souvent perçu comme indicateur de santé. Toutefois, l'IMC présente plusieurs limites en tant qu'indicateur de santé, car il ne prend pas en compte d'autres aspects physiologiques, comme le souligne l'article "Effets physiologiques de l'activité physique" de Frédéric Costes.
-source : https://hal.science/hal-02360915/document#:~:text=L'activit%C3%A9%20physique%20permet%20d,am%C3%A9liorant%20la%20fonction%20endoth%C3%A9liale%20vasodilatatrice.
+Ces résultats sont surprenants, car on pourrait s'attendre à ce que l'IMC soit influencé par l'activité physique. En effet, l'IMC est souvent perçu comme indicateur de santé. Toutefois, l'IMC présente plusieurs limites en tant qu'indicateur de santé, car il ne prend pas en compte d'autres aspects physiologiques, comme le souligne l'article "Effets physiologiques de l'activité physique" de Frédéric Costes. source : https://hal.science/hal-02360915/document#:\~:text=L'activit%C3%A9%20physique%20permet%20d,am%C3%A9liorant%20la%20fonction%20endoth%C3%A9liale%20vasodilatatrice.
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
@@ -599,9 +591,7 @@ chart$qqplot(biometry_anova2comp)
 
 Notre test d'interaction, nous donnait un résultat difficile à analyser. Nous avons donc décider de faire un test avec interactions pour vérifier si les variables étaient ou non en interaction. Il n'y a pas d'interaction entre le genre et le fast-food. Avec les résultats de notre test anova, nous pouvons conclure qu'il n'y a pas d'interaction entre la variable genre et la variable fast_food_rec. Ce qui signifie biologiquement parlant que le nombre de fastfood par mois n'est pas corrélé avec le genre.
 
-
-Les résultats de notre test, ne nous permettent pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre ou de la consommation de fast-food sur l'imc au seuil de 5%. Cela peut nous étonner car d'après un article du docteur Gabrielle de Torrenté de la Jara basé sur des études statistiques, l'effet de la consommation de fast-food sur la prise de poids est significative (Consommation dans les fast-foods : prise de poids et résistance à l'insuline... une forte association positive). Nos résultats divergents de la littérature scientifique peuvent être expliqué par le faible nombre d'individus dans notre étude et l’échantillonnage peu correct.
-source : https://www.revmed.ch/revue-medicale-suisse/2005/revue-medicale-suisse-12/consommation-dans-les-fast-foods-prise-de-poids-et-resistance-a-l-insuline-une-forte-association-positive
+Les résultats de notre test, ne nous permettent pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre ou de la consommation de fast-food sur l'imc au seuil de 5%. Cela peut nous étonner car d'après un article du docteur Gabrielle de Torrenté de la Jara basé sur des études statistiques, l'effet de la consommation de fast-food sur la prise de poids est significative (Consommation dans les fast-foods : prise de poids et résistance à l'insuline... une forte association positive). Nos résultats divergents de la littérature scientifique peuvent être expliqué par le faible nombre d'individus dans notre étude et l'échantillonnage peu correct. source : https://www.revmed.ch/revue-medicale-suisse/2005/revue-medicale-suisse-12/consommation-dans-les-fast-foods-prise-de-poids-et-resistance-a-l-insuline-une-forte-association-positive
 
 ### ANOVA à deux facteurs 2
 
@@ -658,8 +648,7 @@ chart$qqplot(biometry_anova2)
 
 Nous avons réalisé un test d'interaction qui nous donnait des résultats difficile à analyser de façon catégorique. Dans le doute, nous avons décidé de faire un test avec interaction. Notre test anova nous montre que finalement il n'y a pas d'interaction entre les variables genre et eau_rec. Cela signifie que la quantité d'eau bue par jour n'est pas en lien avec le genre des individus.
 
-Notre test anova ne nous permet pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre et de l'eau bue sur l'IMC au seuil de 5%. Ce test n'est pas surprenant par rapport au données lues sur Internet. En effet, la quantité d'eau nécessaire pour être en bonne santé est différente selon les individus. (L'article vient d'un site Top santé qui est basé sur une déclaration d'une scientifique agrée par les USA, Un urologue a tranché : voici la quantité parfaite de liquide à boire par jour - Top Santé). En effet, la corpulence a un impact sur notre besoin en eau. Il est donc difficile de déterminer l'impact de la quantité d'eau ingérée sur l'IMC.
-source : https://www.topsante.com/nutrition-et-recettes/les-bons-aliments/eau/un-urologue-a-tranche-voici-la-quantite-parfaite-de-liquide-a-boire-par-jour-657251
+Notre test anova ne nous permet pas de rejeter H0. Il n'y a donc pas d'effet significatif du genre et de l'eau bue sur l'IMC au seuil de 5%. Ce test n'est pas surprenant par rapport au données lues sur Internet. En effet, la quantité d'eau nécessaire pour être en bonne santé est différente selon les individus. (L'article vient d'un site Top santé qui est basé sur une déclaration d'une scientifique agrée par les USA, Un urologue a tranché : voici la quantité parfaite de liquide à boire par jour - Top Santé). En effet, la corpulence a un impact sur notre besoin en eau. Il est donc difficile de déterminer l'impact de la quantité d'eau ingérée sur l'IMC. source : https://www.topsante.com/nutrition-et-recettes/les-bons-aliments/eau/un-urologue-a-tranche-voici-la-quantite-parfaite-de-liquide-a-boire-par-jour-657251
 
 # Discussion et conclusions
 
