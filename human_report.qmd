@@ -81,7 +81,7 @@ Nous avons montré via un test Chi² qu'il y a bel et bien une augmentation sign
 
 Ceci était attendu, car cela rejoint les résultats de Thérésa Lebacq, qui indiquait que l'IMC moyen augmente en fonction de l'âge.
 
-source : https://www.sciensano.be/fr/biblio/enquete-de-consommation-alimentaire-2014-2015-resume-rapport-1-habitudes-alimentaires-anthropometrie
+Source : https://www.sciensano.be/fr/biblio/enquete-de-consommation-alimentaire-2014-2015-resume-rapport-1-habitudes-alimentaires-anthropometrie
 
 -   **Indépendance entre l'IMC et la consommation de sucre (Test Chi² 2)**
 
@@ -89,7 +89,7 @@ Le test Chi² a révélé que la consommation de sucre n'a pas d'impact signific
 
 Ceci est assez surprenant car on associe généralement une consommation de sucre élevée à un IMC plus important.
 
-source : https://www.louvainmedical.be/fr/article/les-sucres-impact-sur-notre-sante-metabolique
+Source : https://www.louvainmedical.be/fr/article/les-sucres-impact-sur-notre-sante-metabolique
 
 -   **Pas d'impact de l'activité physique sur l'IMC (Anova à un facteur 2)**
 
@@ -101,26 +101,26 @@ Les conditions d'application confirment notre ANOVA et le test non-paramétrique
 
 L'IMC présente des limites en tant qu'indicateur de santé. Comme il ne distingue pas la masse musculaire de la masse grasse, les sportifs pourraient bénéficier d'une évaluation différente de l'IMC.
 
-source : https://hal.science/hal-02360915/document#:\~:text=L'activit%C3%A9%20physique%20permet%20d,am%C3%A9liorant%20la%20fonction%20endoth%C3%A9liale%20vasodilatatrice.
+Source : https://hal.science/hal-02360915/document#:\~:text=L'activit%C3%A9%20physique%20permet%20d,am%C3%A9liorant%20la%20fonction%20endoth%C3%A9liale%20vasodilatatrice.
 
 ## Tests d'hypothèses
 
 <!--% Sélectionnez les 4 tests d'hypothèses les plus pertinents depuis `human_notebook.qmd`, ainsi bien sûr que les calculs des indices nécessaires que vous placerez juste au-dessus de vos tests. Ces tests doivent répondre à votre question de recherche (le but). Reformulez les interprétations pour former un texte qui se lit en continu. -->
 
-1)  Test de chi carré d'indépendance, lien entre l'âge et l'IMC
+1.  **Test de chi carré d'indépendance, lien entre l'âge et l'IMC**
 
-Calcul de l'IMC : mass_corr/taille1\^2
+    Calcul de l'IMC : mass_corr/taille1\^2
 
 -   H₀ : l'âge et l'IMC sont indépendants. 
 -   H₁ : l'âge et l'IMC sont dépendants.
 
-2)  Test t Student, comparaison de l'IMC entre les hommes et les femmes
+2)  **Test t Student, comparaison de l'IMC entre les hommes et les femmes**
 
 -   H₀ : la moyenne de l'IMC chez les hommes est égale à celles de femmes
 
 -   H₁ : la moyenne de l'IMC chez les hommes est différente à celles de femmes
 
-3)  Test t pour les moyennes indépendantes, effet du tabagisme sur la répartition de la graisse abdominale
+3)  **Test t pour les moyennes indépendantes, effet du tabagisme sur la répartition de la graisse abdominale**
 
     Calcul rapport taille/tour de taille (=répartition de la graisse abdominale) : rapport_tour_taille_taille = tour_taille/taille
 
@@ -128,7 +128,7 @@ Calcul de l'IMC : mass_corr/taille1\^2
 
 -   H₁ : différence entre les fumeurs et les non-fumeurs sur la moyenne des rapports taille/tour de taille.
 
-4)  ANOVA à un facteur, lien entre activité physique et IMC
+4)  **ANOVA à un facteur, lien entre activité physique et IMC**
 
 -   H₀ : l'IMC est le même peu importe le niveau d'heures d'activité physique.
 
