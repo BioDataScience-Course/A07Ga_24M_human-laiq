@@ -588,7 +588,7 @@ anova(biometry_anova2comp) %>.%
 tabularise(.)
 ```
 
-```{r testnormalité_anova2_1}
+```{r testnormalite_anova2_1}
 chart$qqplot(biometry_anova2comp)
 ```
 
@@ -617,7 +617,7 @@ chart(data = biometry, imc ~ eau_rec) +
   labs(x = "Consommation d'eau [L/j]")
 ```
 
-```{r}
+```{r testinteractionanova2_2}
 biometry %>.%
   sgroup_by(., eau_rec, genre) %>.%
   ssummarise(., imc_groups = mean(imc)) %>.%
@@ -636,16 +636,16 @@ H1 : Les moyennes (imc, eau, genre) ne sont pas égales entre elles.
 
 <!--% Vérification des conditions d'application -->
 
-```{r}
+```{r test_bartlett_anova2_2}
 bartlett.test(data=biometry, imc ~ interaction(genre, eau_rec))
 ```
 
-```{r}
+```{r test_anova2_2}
 anova2 <- lm(data=biometry, imc ~ eau_rec * genre)
 anova(anova2) |> tabularise(.)
 ```
 
-```{r}
+```{r testnormalite_anova2_2}
 chart$qqplot(biometry_anova2)
 ```
 
